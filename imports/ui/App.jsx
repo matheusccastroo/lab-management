@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { LoginPage } from "./LoginPage";
 import "antd/dist/antd.css";
 import { useLoggedInUser } from "../helpers/getLoggedInUser";
+import { PageTemplate } from "./template/PageTemplate";
 
 export const App = () => {
   const currentUser = useLoggedInUser();
@@ -10,5 +11,9 @@ export const App = () => {
     return <LoginPage />;
   }
 
-  return <div>Logado</div>;
+  return (
+    <Fragment>
+      <PageTemplate component={() => <div>Oi</div>} />
+    </Fragment>
+  );
 };
