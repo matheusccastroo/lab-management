@@ -1,11 +1,14 @@
-import React from 'react';
-import { Hello } from './Hello.jsx';
-import { Info } from './Info.jsx';
+import React from "react";
+import { LoginPage } from "./LoginPage";
+import "antd/dist/antd.css";
+import { useLoggedInUser } from "../helpers/getLoggedInUser";
 
-export const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello/>
-    <Info/>
-  </div>
-);
+export const App = () => {
+  const currentUser = useLoggedInUser();
+
+  if (!currentUser) {
+    return <LoginPage />;
+  }
+
+  return <div>Logado</div>;
+};
