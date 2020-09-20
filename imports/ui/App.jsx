@@ -1,8 +1,10 @@
-import React, { Fragment } from "react";
-import { LoginPage } from "./LoginPage";
+import React from "react";
+import { LoginPage } from "./pages/LoginPage";
 import "antd/dist/antd.css";
 import { useLoggedInUser } from "../helpers/getLoggedInUser";
-import { PageTemplate } from "./template/PageTemplate";
+import { Router } from "@reach/router";
+import { NotFound } from "./pages/NotFound";
+import { AllPersonsView } from "./components/PersonsTable";
 
 export const App = () => {
   const currentUser = useLoggedInUser();
@@ -12,8 +14,9 @@ export const App = () => {
   }
 
   return (
-    <Fragment>
-      <PageTemplate component={() => <div>Oi</div>} />
-    </Fragment>
+    <Router>
+      <AllPersonsView path="/persons" />
+      <NotFound default />
+    </Router>
   );
 };
