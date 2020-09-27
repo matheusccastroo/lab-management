@@ -1,11 +1,11 @@
 import React from "react";
 import { PersonsCollection } from "../../api/db/persons-collection";
 import withTemplate from "../template/WithTemplate";
-import { useTracker } from "meteor/react-meteor-data";
 import { GenericTable } from "./GenericTable";
 import { Button } from "antd";
 import { Link } from "@reach/router";
 import moment from "moment";
+import { useSubscription } from "../helpers/useSubscription";
 
 const columns = [
   {
@@ -34,25 +34,17 @@ const columns = [
   },
 ];
 
-const personsTable = () => {
-  const { isLoading, persons } = useTracker(() => {
-    const handler = Meteor.subscribe("persons.fetchAll");
-    return {
-      isLoading: !handler.ready(),
-      persons: PersonsCollection.find().fetch(),
-    };
-  });
-
-  return (
-    <GenericTable
-      dataSource={persons}
-      columns={columns}
-      isLoading={isLoading}
-    />
+const PersonsTable = () => {
+  const { dataFetched } = useSubscription(
+    "persons.fetchAll",
+    PersonsCollection
   );
+
+  return <GenericTable dataSource={dataFetched} columns={columns} />;
 };
 
-export const AllPersonsView = withTemplate(personsTable, {
+export const AllPersonsView = withTemplate({
+  withHeader: true,
   title: "Persons",
   subTitle: "All person can be found here.",
   extra: [
@@ -60,4 +52,4 @@ export const AllPersonsView = withTemplate(personsTable, {
       <Link to={`/new-person`}>+ Person</Link>
     </Button>,
   ],
-});
+})(PersonsTable);

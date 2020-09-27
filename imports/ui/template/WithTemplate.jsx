@@ -5,10 +5,11 @@ import LogoutOutlined from "@ant-design/icons/lib/icons/LogoutOutlined";
 
 const { Header, Content } = Layout;
 
-export default function withTemplate(WrappedComponent, withHeader) {
-  console.log(withHeader);
+const withTemplate = (props) => (WrappedComponent) => {
+  const { withHeader, title, subTitle, extra, ...rest } = props;
   return class extends React.Component {
     onClick = () => Meteor.logout(() => navigate("/"));
+
     render() {
       return (
         <Layout className="layout">
@@ -19,6 +20,7 @@ export default function withTemplate(WrappedComponent, withHeader) {
               </Menu.Item>
               <Menu.Item>
                 <Link to={`/persons`}>Persons</Link>
+                <Link to={`/machines`}>Machines</Link>
               </Menu.Item>
               <Button
                 icon={<LogoutOutlined />}
@@ -31,12 +33,16 @@ export default function withTemplate(WrappedComponent, withHeader) {
           </Header>
           <Content style={{ padding: "0 50px" }}>
             <div className="site-layout-content" style={{ margin: "16px 0" }}>
-              {withHeader && <PageHeader {...withHeader} />}
-              <WrappedComponent {...this.props} />
+              {withHeader && (
+                <PageHeader title={title} subTitle={subTitle} extra={extra} />
+              )}
+              <WrappedComponent {...rest} />
             </div>
           </Content>
         </Layout>
       );
     }
   };
-}
+};
+
+export default withTemplate;
