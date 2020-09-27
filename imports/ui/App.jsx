@@ -5,6 +5,7 @@ import { useLoggedInUser } from "../helpers/getLoggedInUser";
 import { Router } from "@reach/router";
 import { NotFound } from "./pages/NotFound";
 import { AllPersonsView } from "./components/PersonsTable";
+import { AllComputersView } from "./components/ComputersTable";
 
 export const App = () => {
   const currentUser = useLoggedInUser();
@@ -16,6 +17,7 @@ export const App = () => {
   return (
     <Router>
       <AllPersonsView path="/persons" />
+      <AllComputersView path="/computers" />
       <NotFound default />
     </Router>
   );

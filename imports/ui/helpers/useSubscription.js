@@ -14,7 +14,9 @@ const divSpinStyle = {
 
 export const useSubscription = (subscriptionName, mongoCollection, fields) => {
   return useTracker(() => {
-    const handler = Meteor.subscribe(subscriptionName);
+    const handler = Meteor.subscribe(subscriptionName, {
+      fields,
+    });
     if (!handler.ready()) {
       return (
         <div style={divSpinStyle}>
@@ -23,7 +25,7 @@ export const useSubscription = (subscriptionName, mongoCollection, fields) => {
       );
     }
     return {
-      dataFetched: mongoCollection.find({}, fields).fetch(),
+      dataFetched: mongoCollection.find({}).fetch(),
     };
   });
 };

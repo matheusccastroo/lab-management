@@ -1,32 +1,32 @@
 import React from "react";
-import { PersonsCollection } from "../../api/db/persons-collection";
 import withTemplate from "../template/WithTemplate";
 import { GenericTable } from "./generic/GenericTable";
 import { Button } from "antd";
 import { Link } from "@reach/router";
 import moment from "moment";
 import { useSubscription } from "../helpers/useSubscription";
+import { ComputersCollection } from "../../api/db/computers-collection";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "Number",
+    dataIndex: "number",
+    key: "number",
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "In Use",
+    dataIndex: "inUse",
+    key: "inUse",
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
+    title: "Location",
+    dataIndex: "Location",
+    key: "location",
   },
   {
-    title: "Created at",
-    dataIndex: "createdAt",
-    key: "createdAt",
+    title: "Updated at",
+    dataIndex: "updatedAt",
+    key: "updatedAt",
     render: (value) => moment(value).format("DD/MM/YYYY - HH:mm"),
   },
   {
@@ -34,22 +34,22 @@ const columns = [
   },
 ];
 
-const PersonsTable = () => {
+const ComputersTable = () => {
   const { dataFetched } = useSubscription(
-    "persons.fetchAll",
-    PersonsCollection
+    "computers.fetchAll",
+    ComputersCollection
   );
 
   return <GenericTable dataSource={dataFetched} columns={columns} />;
 };
 
-export const AllPersonsView = withTemplate({
+export const AllComputersView = withTemplate({
   withHeader: true,
-  title: "Persons",
-  subTitle: "All person can be found here.",
+  title: "Computers",
+  subTitle: "All computers can be found here.",
   extra: [
     <Button key="3" type="primary">
-      <Link to={`/new-person`}>+ Person</Link>
+      <Link to={`/new-computer`}>+ Computer</Link>
     </Button>,
   ],
-})(PersonsTable);
+})(ComputersTable);

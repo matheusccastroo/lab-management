@@ -2,6 +2,7 @@ import { Accounts } from "meteor/accounts-base";
 import { Meteor } from "meteor/meteor";
 import { PersonsCollection } from "../imports/api/db/persons-collection";
 import "../imports/api/publications/person/personsFetchAll";
+import "../imports/api/publications/computers/computersfetchAll";
 
 Meteor.startup(() => {
   if (!Accounts.findUserByUsername("admin")) {
