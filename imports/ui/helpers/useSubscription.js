@@ -12,9 +12,15 @@ const divSpinStyle = {
   display: "flex",
 };
 
-export const useSubscription = (subscriptionName, mongoCollection, fields) => {
+export const useSubscription = (
+  subscriptionName,
+  mongoCollection,
+  parameters,
+  fields
+) => {
   return useTracker(() => {
     const handler = Meteor.subscribe(subscriptionName, {
+      parameters,
       fields,
     });
     if (!handler.ready()) {

@@ -13,7 +13,6 @@ export const personUpsert = new ValidatedMethod({
         updatedAt: new Date(),
       },
       $setOnInsert: {
-        ...postObject,
         createdAt: new Date(),
       },
     });

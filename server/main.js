@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import { PersonsCollection } from "../imports/api/db/persons-collection";
 import "../imports/api/publications/person/personsFetchAll";
 import "../imports/api/publications/computers/computersfetchAll";
+import "../imports/api/methods/person/personUpsert";
 
 Meteor.startup(() => {
   if (!Accounts.findUserByUsername("admin")) {

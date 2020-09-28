@@ -6,6 +6,9 @@ import { Router } from "@reach/router";
 import { NotFound } from "./pages/NotFound";
 import { AllPersonsView } from "./components/PersonsTable";
 import { AllComputersView } from "./components/ComputersTable";
+import { ConfigProvider } from "antd";
+import locale from "antd/es/date-picker/locale/pt_BR";
+import { NewPerson } from "./components/NewPersonForm";
 
 export const App = () => {
   const currentUser = useLoggedInUser();
@@ -15,10 +18,14 @@ export const App = () => {
   }
 
   return (
-    <Router>
-      <AllPersonsView path="/persons" />
-      <AllComputersView path="/computers" />
-      <NotFound default />
-    </Router>
+    <ConfigProvider locale={locale}>
+      <Router>
+        <AllPersonsView path="persons" />
+        <AllComputersView path="computers" />
+        <NewPerson path="/new-person/:personId" />
+        <NewPerson path="new-person" />
+        <NotFound default />
+      </Router>
+    </ConfigProvider>
   );
 };

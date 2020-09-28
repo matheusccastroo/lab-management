@@ -2,7 +2,7 @@ import React from "react";
 import { PersonsCollection } from "../../api/db/persons-collection";
 import withTemplate from "../template/WithTemplate";
 import { GenericTable } from "./generic/GenericTable";
-import { Button } from "antd";
+import { Button, Space } from "antd";
 import { Link } from "@reach/router";
 import moment from "moment";
 import { useSubscription } from "../helpers/useSubscription";
@@ -31,6 +31,13 @@ const columns = [
   },
   {
     title: "Actions",
+    render: ({ _id }) => (
+      <Space size="middle">
+        <Link to={`/new-person/${_id}`} className="nav-text">
+          Edit
+        </Link>
+      </Space>
+    ),
   },
 ];
 
