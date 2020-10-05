@@ -1,16 +1,6 @@
 import React from "react";
-import { Spin } from "antd";
 import { useTracker } from "meteor/react-meteor-data";
-
-const divSpinStyle = {
-  padding: "24px",
-  minHeight: "360px",
-  width: "100%",
-  height: "100%",
-  justifyContent: "center",
-  alignItems: "center",
-  display: "flex",
-};
+import { LoadingComponent } from "../components/LoadingComponent";
 
 export const useSubscription = (
   subscriptionName,
@@ -24,11 +14,7 @@ export const useSubscription = (
       fields,
     });
     if (!handler.ready()) {
-      return (
-        <div style={divSpinStyle}>
-          <Spin tip="Loading..." />
-        </div>
-      );
+      return <LoadingComponent />;
     }
     return {
       dataFetched: mongoCollection.find({}).fetch(),

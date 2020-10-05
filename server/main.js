@@ -4,6 +4,7 @@ import { PersonsCollection } from "../imports/api/db/persons-collection";
 import "../imports/api/publications/person/personsFetchAll";
 import "../imports/api/publications/computers/computersfetchAll";
 import "../imports/api/methods/person/personUpsert";
+import "../imports/api/methods/computer/findPairComputerPerson";
 
 Meteor.startup(() => {
   if (!Accounts.findUserByUsername("admin")) {

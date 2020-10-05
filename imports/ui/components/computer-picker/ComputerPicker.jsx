@@ -5,9 +5,17 @@ import { useSubscription } from "../../helpers/useSubscription";
 import { ComputersCollection } from "../../../api/db/computers-collection";
 import { chunk } from "lodash";
 import { ComputerCard } from "./ComputerCard";
+import { findPairComputerPerson } from "../../../api/methods/computer/findPairComputerPerson";
+import { LoadingComponent } from "../LoadingComponent";
+import { ComputerPersonProfile } from "../ComputerPersonProfile";
 
 const AllComputerPicker = ({ columnSpan }) => {
   const [showModal, setShowModal] = useState(false);
+  const [lastComputerId, setLastComputerId] = useState(null);
+  const [computer, setComputer] = useState(null);
+  const [person, setPerson] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   const { dataFetched } = useSubscription(
     "computers.fetchAll",
     ComputersCollection,
@@ -19,20 +27,45 @@ const AllComputerPicker = ({ columnSpan }) => {
 
   //TODO -> chunks of 8 or so, add a divider.
 
-  const modal = () => {
-    return (
-      <Modal
-        title="Information"
-        visible={showModal}
-        onOk={() => setShowModal(false)}
-        onCancel={() => setShowModal(false)}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
+  const handleComputerCardOnClick = ({ _id, personId }) => {
+    if (_id === lastComputerId) {
+      setShowModal(true);
+      return;
+    }
+    setIsLoading(true);
+    setShowModal(true);
+    findPairComputerPerson.call(
+      { computerId: _id, personId },
+      (err, response) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        setLastComputerId(_id);
+        const { computer, person } = response;
+        setComputer(computer);
+        setPerson(person);
+        setIsLoading(false);
+      }
     );
   };
+
+  const modal = (
+    <Modal
+      title="Information"
+      visible={showModal}
+      onOk={() => setShowModal(false)}
+      onCancel={() => setShowModal(false)}
+    >
+      <div>
+        {isLoading ? (
+          <LoadingComponent />
+        ) : (
+          <ComputerPersonProfile person={person} computer={computer} />
+        )}
+      </div>
+    </Modal>
+  );
 
   return (
     <>
@@ -40,7 +73,7 @@ const AllComputerPicker = ({ columnSpan }) => {
         {computers.map((currentValue) => (
           <Col span={12} className="buttonsContainer">
             {currentValue.map((value) => (
-              <ComputerCard onClick={() => setShowModal(!showModal)} />
+              <ComputerCard onClick={() => handleComputerCardOnClick(value)} />
             ))}
           </Col>
         ))}
