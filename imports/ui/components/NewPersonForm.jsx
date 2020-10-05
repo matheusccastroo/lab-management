@@ -44,8 +44,6 @@ const NewPersonForm = () => {
     navigate("/persons", { replace: true });
   };
 
-  const onFinishFailed = () => console.log("eeeerrrror");
-
   return (
     <Form
       {...layout}
@@ -53,7 +51,6 @@ const NewPersonForm = () => {
       name="basic"
       initialValues={initialValues}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
     >
       <Form.Item
         label="Name"

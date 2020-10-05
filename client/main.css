@@ -24,3 +24,13 @@ body {
 .layout {
   height: 100vh;
 }
+
+.buttonsContainer {
+  display: flex !important;
+  justify-content: center;
+}
+
+.buttonsContainer > * {
+  margin-right: 5px;
+  margin-left: 5px;
+}

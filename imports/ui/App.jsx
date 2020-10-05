@@ -9,6 +9,7 @@ import { AllComputersView } from "./components/ComputersTable";
 import { ConfigProvider } from "antd";
 import locale from "antd/es/date-picker/locale/pt_BR";
 import { NewPerson } from "./components/NewPersonForm";
+import { ComputerPicker } from "./components/computer-picker/ComputerPicker";
 
 export const App = () => {
   const currentUser = useLoggedInUser();
@@ -20,6 +21,7 @@ export const App = () => {
   return (
     <ConfigProvider locale={locale}>
       <Router>
+        <ComputerPicker path="/" />
         <AllPersonsView path="persons" />
         <AllComputersView path="computers" />
         <NewPerson path="/new-person/:personId" />
