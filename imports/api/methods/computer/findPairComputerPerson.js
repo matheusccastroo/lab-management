@@ -6,6 +6,10 @@ export const findPairComputerPerson = new ValidatedMethod({
   name: "computer#findPairComputerPerson",
   validate({ computerId, personId }) {
     check(computerId, String);
+
+    if (personId) {
+      check(personId, String);
+    }
   },
   run({ computerId, personId }) {
     if (Meteor.isClient) {

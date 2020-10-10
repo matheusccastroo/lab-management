@@ -28,6 +28,7 @@ body {
 .buttonsContainer {
   display: flex !important;
   justify-content: center;
+  padding-bottom: 15px;
 }
 
 .buttonsContainer > * {

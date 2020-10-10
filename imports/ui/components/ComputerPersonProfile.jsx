@@ -1,20 +1,23 @@
 import React from "react";
 import { Badge, Descriptions } from "antd";
 
-export const ComputerPersonProfile = (props) => {
-  console.log(props);
+export const ComputerPersonProfile = (computer) => {
+  const { location, status, bookedAt, currentPerson } = computer.computer;
+  const { name, photoUrl } = currentPerson;
+
   return (
     <>
-      <Descriptions bordered size="small" column={2}>
-        <Descriptions.Item label="Location">Cloud Database</Descriptions.Item>
+      <Descriptions bordered size="small" column={1}>
+        <Descriptions.Item label="Location">{location}</Descriptions.Item>
         <Descriptions.Item label="Status">
           {" "}
-          <Badge status="processing" text="Running" />
+          <Badge status="processing" text={status} />
         </Descriptions.Item>
-        <Descriptions.Item label="Booked at">Cloud Database</Descriptions.Item>
-        <Descriptions.Item label="Person Name">
-          Cloud Database
+        <Descriptions.Item label="Booked at">
+          {bookedAt.toString()}
         </Descriptions.Item>
+        <Descriptions.Item label="Person Name">{name}</Descriptions.Item>
+        <Descriptions.Item label="Person Photo">{photoUrl}</Descriptions.Item>
       </Descriptions>
     </>
   );

@@ -22,10 +22,10 @@ const AllComputerPicker = ({ columnSpan }) => {
     undefined,
     { _id: 1 }
   );
-  const chunkSize = dataFetched && Math.ceil(dataFetched.length / 2);
+  const chunkSize = 5;
   const computers = chunk(dataFetched, chunkSize);
 
-  //TODO -> chunks of 8 or so, add a divider.
+  //TODO -> add a divider.
 
   const handleComputerCardOnClick = ({ _id, personId }) => {
     if (_id === lastComputerId) {
@@ -61,7 +61,7 @@ const AllComputerPicker = ({ columnSpan }) => {
         {isLoading ? (
           <LoadingComponent />
         ) : (
-          <ComputerPersonProfile person={person} computer={computer} />
+          <ComputerPersonProfile computer={computer} />
         )}
       </div>
     </Modal>
