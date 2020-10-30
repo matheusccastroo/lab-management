@@ -21,3 +21,5 @@ react-meteor-data       # React higher-order component for reactively tracking M
 mdg:validated-method
 accounts-password
 check
+jagi:astronomy
+jagi:astronomy-timestamp-behavior

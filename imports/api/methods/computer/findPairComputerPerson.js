@@ -1,6 +1,6 @@
 import { ValidatedMethod } from "meteor/mdg:validated-method";
-import { ComputersCollection } from "../../db/computers-collection";
-import { PersonsCollection } from "../../db/persons-collection";
+import { Computer } from "../../models/computer";
+import { Person } from "../../models/person";
 
 export const findPairComputerPerson = new ValidatedMethod({
   name: "computer#findPairComputerPerson",
@@ -16,8 +16,8 @@ export const findPairComputerPerson = new ValidatedMethod({
       return;
     }
 
-    const person = PersonsCollection.findOne(personId);
-    const computer = ComputersCollection.findOne(computerId);
+    const person = Person.findOne(personId);
+    const computer = Computer.findOne(computerId);
 
     return {
       person,

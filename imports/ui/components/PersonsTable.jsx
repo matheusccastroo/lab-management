@@ -6,12 +6,13 @@ import { Button, Space } from "antd";
 import { Link } from "@reach/router";
 import moment from "moment";
 import { useSubscription } from "../helpers/useSubscription";
+import { Person } from "../../api/models/person";
 
 const columns = [
   {
     title: "Name",
-    dataIndex: "name",
     key: "name",
+    render: (person) => person.getFullName(),
   },
   {
     title: "Age",
@@ -42,10 +43,7 @@ const columns = [
 ];
 
 const PersonsTable = () => {
-  const { dataFetched } = useSubscription(
-    "persons.fetchAll",
-    PersonsCollection
-  );
+  const { dataFetched } = useSubscription("persons.fetchAll", Person);
 
   return <GenericTable dataSource={dataFetched} columns={columns} />;
 };
