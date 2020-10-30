@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
-import { PersonsCollection } from "../../db/persons-collection";
+import { Person } from "../../models/person";
 
 Meteor.publish("persons.fetchAll", ({ parameters, fields }) => {
-  return PersonsCollection.find({ ...parameters }, { ...fields });
+  return Person.find({ ...parameters }, { ...fields });
 });

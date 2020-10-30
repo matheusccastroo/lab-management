@@ -6,6 +6,7 @@ import { personUpsert } from "../../api/methods/person/personUpsert";
 import { navigate, useParams } from "@reach/router";
 import withTemplate from "../template/WithTemplate";
 import moment from "moment";
+import { Person } from "../../api/models/person";
 
 const layout = {
   labelCol: { span: 0 },
@@ -21,7 +22,7 @@ const NewPersonForm = () => {
 
   const { dataFetched: existingEntry } = useSubscription(
     "persons.fetchAll",
-    PersonsCollection,
+    Person,
     { _id }
   );
 
@@ -53,8 +54,15 @@ const NewPersonForm = () => {
       onFinish={onFinish}
     >
       <Form.Item
-        label="Name"
-        name="name"
+        label="First Name"
+        name="firstName"
+        rules={[{ required: true, message: "Title is required!" }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="Last Name"
+        name="lastName"
         rules={[{ required: true, message: "Title is required!" }]}
       >
         <Input />

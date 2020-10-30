@@ -9,9 +9,19 @@ export const Computer = Class.create({
   fields: {
     location: {
       type: String,
+      validators: [
+        {
+          type: "minLength",
+          param: 2,
+          resolveError({ name, param }) {
+            return `The name "${name}" has to be at least ${param} characters long.`;
+          },
+        },
+      ],
     },
     status: {
       type: ComputerStatus,
+      default: ComputerStatus.IDLE,
     },
     currentPersonId: {
       type: String,
@@ -41,6 +51,9 @@ export const Computer = Class.create({
         person: lastPerson,
         lastUsedAt: date,
       };
+    },
+    getStatusDecoded() {
+      return ComputerStatus.getIdentifier(this.status);
     },
   },
 });

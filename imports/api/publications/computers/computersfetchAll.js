@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
-import { ComputersCollection } from "../../db/computers-collection";
+import { Computer } from "../../models/computer";
 
-Meteor.publish("computers.fetchAll", ({ fields }) => {
-  return ComputersCollection.find({}, { fields: { ...fields } });
+Meteor.publish("computers.fetchAll", ({ parameters, fields }) => {
+  return Computer.find({ ...parameters }, { ...fields });
 });

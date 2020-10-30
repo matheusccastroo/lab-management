@@ -1,27 +1,22 @@
 import React from "react";
 import withTemplate from "../template/WithTemplate";
 import { GenericTable } from "./generic/GenericTable";
-import { Button } from "antd";
+import { Button, Space } from "antd";
 import { Link } from "@reach/router";
 import moment from "moment";
 import { useSubscription } from "../helpers/useSubscription";
-import { ComputersCollection } from "../../api/db/computers-collection";
+import { Computer } from "../../api/models/computer";
 
 const columns = [
   {
-    title: "Number",
-    dataIndex: "number",
-    key: "number",
-  },
-  {
-    title: "In Use",
-    dataIndex: "inUse",
-    key: "inUse",
-  },
-  {
     title: "Location",
-    dataIndex: "Location",
+    dataIndex: "location",
     key: "location",
+  },
+  {
+    title: "Status",
+    key: "status",
+    render: (computer) => computer.getStatusDecoded(),
   },
   {
     title: "Updated at",
@@ -30,15 +25,28 @@ const columns = [
     render: (value) => moment(value).format("DD/MM/YYYY - HH:mm"),
   },
   {
+    title: "Created at",
+    dataIndex: "createdAt",
+    key: "createdAt",
+    render: (value) => moment(value).format("DD/MM/YYYY - HH:mm"),
+  },
+  {
     title: "Actions",
+    render: ({ _id }) => (
+      <Space size="middle">
+        <Button>
+          <Link to={`/new-computer/${_id}`} className="nav-text">
+            Edit
+          </Link>
+        </Button>
+        <Button danger>Delete</Button>
+      </Space>
+    ),
   },
 ];
 
 const ComputersTable = () => {
-  const { dataFetched } = useSubscription(
-    "computers.fetchAll",
-    ComputersCollection
-  );
+  const { dataFetched } = useSubscription("computers.fetchAll", Computer);
 
   return <GenericTable dataSource={dataFetched} columns={columns} />;
 };
