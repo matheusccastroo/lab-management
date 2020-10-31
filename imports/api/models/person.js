@@ -1,5 +1,6 @@
 import { Class } from "meteor/jagi:astronomy";
 import { PersonsCollection } from "../db/persons-collection";
+import { softremove } from "meteor/jagi:astronomy-softremove-behavior"; // needed for this behavior
 
 export const Person = Class.create({
   name: "Person",
@@ -58,6 +59,11 @@ export const Person = Class.create({
       createdFieldName: "createdAt",
       hasUpdatedField: true,
       updatedFieldName: "updatedAt",
+    },
+    softremove: {
+      removedFieldName: "removed",
+      hasRemovedAtField: true,
+      removedAtFieldName: "removedAt",
     },
   },
 });

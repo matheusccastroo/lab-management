@@ -1,1 +1,2 @@
 import "./personUpsert";
+import "./personDelete";

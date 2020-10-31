@@ -17,21 +17,22 @@ const tailLayout = {
 };
 
 const NewPersonForm = () => {
-  const { personId: _id } = useParams();
+  const { personId: _id = null } = useParams();
   const [form] = Form.useForm();
 
   const { dataFetched: existingEntry } = useSubscription(
     "persons.fetchAll",
     Person,
     { _id }
-  );
+  ); // TODO --> do not user subscription for this case. Use method instead.
 
-  const initialValues = existingEntry
-    ? {
-        ...existingEntry[0],
-        dateOfBirth: moment(existingEntry[0].dateOfBirth),
-      }
-    : {};
+  const initialValues =
+    existingEntry && existingEntry.length > 0
+      ? {
+          ...existingEntry[0],
+          dateOfBirth: moment(existingEntry[0].dateOfBirth),
+        }
+      : {};
 
   useEffect(() => form.resetFields(), [initialValues]);
 

@@ -2,6 +2,7 @@ import { Class } from "meteor/jagi:astronomy";
 import { ComputersCollection } from "../db/computers-collection";
 import { PersonsCollection } from "../db/persons-collection";
 import { ComputerStatus } from "./enums";
+import { softremove } from "meteor/jagi:astronomy-softremove-behavior"; // needed for this behavior
 
 export const Computer = Class.create({
   name: "Computer",
@@ -38,6 +39,11 @@ export const Computer = Class.create({
       createdFieldName: "createdAt",
       hasUpdatedField: true,
       updatedFieldName: "updatedAt",
+    },
+    softremove: {
+      removedFieldName: "removed",
+      hasRemovedAtField: true,
+      removedAtFieldName: "removedAt",
     },
   },
   helpers: {

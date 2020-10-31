@@ -6,6 +6,7 @@ import { Link } from "@reach/router";
 import moment from "moment";
 import { useSubscription } from "../helpers/useSubscription";
 import { Computer } from "../../api/models/computer";
+import { computerDelete } from "../../api/methods/computer/computerDelete";
 
 const columns = [
   {
@@ -39,7 +40,15 @@ const columns = [
             Edit
           </Link>
         </Button>
-        <Button danger>Delete</Button>
+        <Button
+          danger
+          onClick={() => {
+            const shouldDelete = confirm("Are you sure you want to delete?");
+            if (shouldDelete) computerDelete.call({ _id });
+          }}
+        >
+          Delete
+        </Button>
       </Space>
     ),
   },

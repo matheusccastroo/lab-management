@@ -16,20 +16,21 @@ const tailLayout = {
 };
 
 const NewComputerForm = () => {
-  const { computerId: _id } = useParams();
+  const { computerId: _id = null } = useParams();
   const [form] = Form.useForm();
 
   const { dataFetched: existingEntry } = useSubscription(
     "computers.fetchAll",
     Computer,
     { _id }
-  );
+  ); // TODO --> do not user subscription for this case. Use method instead.
 
-  const initialValues = existingEntry
-    ? {
-        ...existingEntry[0],
-      }
-    : {};
+  const initialValues =
+    existingEntry && existingEntry.length > 0
+      ? {
+          ...existingEntry[0],
+        }
+      : {};
 
   useEffect(() => form.resetFields(), [initialValues]);
 

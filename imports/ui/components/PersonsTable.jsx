@@ -7,6 +7,8 @@ import { Link } from "@reach/router";
 import moment from "moment";
 import { useSubscription } from "../helpers/useSubscription";
 import { Person } from "../../api/models/person";
+import { computerDelete } from "../../api/methods/computer/computerDelete";
+import { personDelete } from "../../api/methods/person/personDelete";
 
 const columns = [
   {
@@ -34,9 +36,20 @@ const columns = [
     title: "Actions",
     render: ({ _id }) => (
       <Space size="middle">
-        <Link to={`/new-person/${_id}`} className="nav-text">
-          Edit
-        </Link>
+        <Button>
+          <Link to={`/new-person/${_id}`} className="nav-text">
+            Edit
+          </Link>
+        </Button>
+        <Button
+          danger
+          onClick={() => {
+            const shouldDelete = confirm("Are you sure you want to delete?");
+            if (shouldDelete) personDelete.call({ _id });
+          }}
+        >
+          Delete
+        </Button>
       </Space>
     ),
   },
