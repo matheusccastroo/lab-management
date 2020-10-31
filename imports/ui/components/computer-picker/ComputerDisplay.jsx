@@ -1,67 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { LoadingComponent } from "../LoadingComponent";
-import {
-  AutoComplete,
-  Badge,
-  Button,
-  Descriptions,
-  Form,
-  Input,
-  Modal,
-} from "antd";
+import { Badge, Descriptions, Form, Modal, Select } from "antd";
 import { ComputerStatus } from "../../../api/models/enums";
+import { getPersonsIdAndFullName } from "../../../api/methods/person/getPersonsIdAndFullName";
+import { computerUpsert } from "../../../api/methods/computer/computerUpsert";
 
-const ModalContent = ({ computer, person, formRef }) => {
+const { Option } = Select;
+
+const BookForm = ({ computer, formRef }) => {
   const { location, status: statusNumber, lastBookedAt } = computer;
-
-  const bookForm = (
-    <Form
-      form={formRef}
-      name="basic"
-      onFinish={(values) => console.log(values)}
-    >
-      <Form.Item
-        label="Person"
-        name="currentPersonId"
-        rules={[{ required: true, message: "Title is required!" }]}
-      >
-        <AutoComplete
-          options={options}
-          style={{ width: 200 }}
-          onSelect={onSelect}
-          onSearch={onSearch}
-          placeholder="input here"
-        />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
-  );
-
-  if (person) {
-    const { name, photoUrl } = person;
-
-    return (
-      <Descriptions bordered size="small" column={1}>
-        <Descriptions.Item label="Location">{location}</Descriptions.Item>
-        <Descriptions.Item label="Status">
-          {" "}
-          <Badge
-            status="processing"
-            text={ComputerStatus.getIdentifier(statusNumber)}
-          />
-        </Descriptions.Item>
-        <Descriptions.Item label="Booked at">
-          {lastBookedAt?.toString()}
-        </Descriptions.Item>
-        <Descriptions.Item label="Person Name">{name}</Descriptions.Item>
-        <Descriptions.Item label="Person Photo">{photoUrl}</Descriptions.Item>
-      </Descriptions>
-    );
-  }
+  const [personsOptions, setPersonsOptions] = useState(undefined);
 
   return (
     <>
@@ -79,11 +27,64 @@ const ModalContent = ({ computer, person, formRef }) => {
             {lastBookedAt.toString()}
           </Descriptions.Item>
         )}
+        <Descriptions.Item label="Person">
+          <Form form={formRef} name="bookComputerForm">
+            <Form.Item
+              name="currentPersonId"
+              style={{ marginBottom: "0px" }}
+              rules={[{ required: true, message: "Please select a person!" }]}
+            >
+              <Select
+                showSearch
+                placeholder="Select a person..."
+                optionFilterProp="children"
+                onSearch={(name) => {
+                  getPersonsIdAndFullName.call({ name }, (err, response) => {
+                    if (err) {
+                      console.log(err);
+                      return;
+                    }
+
+                    setPersonsOptions(response);
+                  });
+                }}
+              >
+                {personsOptions &&
+                  personsOptions.map(({ value, label }) => (
+                    <Option value={value}>{label}</Option>
+                  ))}
+              </Select>
+            </Form.Item>
+          </Form>
+        </Descriptions.Item>
       </Descriptions>
-      {bookForm}
     </>
   );
 };
+
+const ActiveComputerProfile = ({ computer, person }) => {
+  const { location, status: statusNumber, lastBookedAt } = computer;
+
+  return (
+    <Descriptions bordered size="small" column={1}>
+      <Descriptions.Item label="Location">{location}</Descriptions.Item>
+      <Descriptions.Item label="Status">
+        {" "}
+        <Badge
+          status="processing"
+          text={ComputerStatus.getIdentifier(statusNumber)}
+        />
+      </Descriptions.Item>
+      <Descriptions.Item label="Booked at">
+        {lastBookedAt?.toString()}
+      </Descriptions.Item>
+      <Descriptions.Item label="Person Name">
+        {person.getFullName()}
+      </Descriptions.Item>
+    </Descriptions>
+  );
+};
+
 export const ComputerDisplay = ({
   showModal,
   setShowModal,
@@ -91,28 +92,53 @@ export const ComputerDisplay = ({
   computer,
   person,
 }) => {
-  if (isLoading) return <LoadingComponent />;
+  const [form] = Form.useForm();
 
-  let content;
+  const getContent = () => {
+    if (isActive && person) {
+      return <ActiveComputerProfile person={person} computer={computer} />;
+    }
+    return <BookForm computer={computer} formRef={form} />;
+  };
 
-  content = <ModalContent computer={computer} person={person} />;
-
-  if (!person) {
-    const [form] = Form.useForm();
-
-    content = (
-      <ModalContent computer={computer} person={person} formRef={form} />
-    );
-  }
+  const isActive = computer && computer.isActive();
 
   return (
     <Modal
       title="Information"
       visible={showModal}
-      onOk={() => setShowModal(false)}
+      onOk={() => {
+        if (!isActive) {
+          form
+            .validateFields()
+            .then(({ currentPersonId }) => {
+              computer.setActive(currentPersonId);
+              computer.lastBookedAt = new Date();
+              computerUpsert.call(computer, (err) => {
+                if (err) {
+                  console.log(err);
+                }
+              });
+              setShowModal(false);
+            })
+            .catch((info) => {
+              console.log("Validate Failed:", info);
+            });
+        } else {
+          computer.status = ComputerStatus.IDLE;
+          computer.currentPersonId = null;
+          computerUpsert.call(computer, (err) => {
+            if (err) {
+              console.log(err);
+            }
+          });
+          setShowModal(false);
+        }
+      }}
       onCancel={() => setShowModal(false)}
+      okText={isActive ? "Unbook" : "Book"}
     >
-      <div>{content}</div>
+      <div>{isLoading ? <LoadingComponent /> : getContent(person)}</div>
     </Modal>
   );
 };

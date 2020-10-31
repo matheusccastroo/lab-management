@@ -4,6 +4,7 @@ import { PersonsCollection } from "../db/persons-collection";
 import { ComputerStatus } from "./enums";
 import { softremove } from "meteor/jagi:astronomy-softremove-behavior"; // needed for this behavior
 import { omit, assign } from "lodash";
+import { Person } from "./person";
 
 export const Computer = Class.create({
   name: "Computer",
@@ -59,24 +60,19 @@ export const Computer = Class.create({
         lastUsedAt: date,
       };
     },
+    isActive() {
+      return this.status === ComputerStatus.RUNNING;
+    },
     getStatusDecoded() {
       return ComputerStatus.getIdentifier(this.status);
     },
-    isActive() {
-      return this.getStatusDecoded() === ComputerStatus.RUNNING;
+    setActive(personId) {
+      this.status = ComputerStatus.RUNNING;
+      this.currentPersonId = personId;
+      return;
     },
-  },
-  events: {
-    beforeFind(e) {
-      // const { options, selector } = e;
-      // const defaultOptions = ["defaults", "children", "clone"];
-      // const mongoSelectors = {
-      //   fields: {
-      //     ...omit(options, defaultOptions),
-      //   },
-      // };
-      // assign(options, mongoSelectors);
-      console.log(e);
-    }, //TODO --> fix this, so that I can use fields options to get only wanted fields from subscription
+    getCurrentPerson() {
+      return Person.findOne(this.currentPersonId);
+    },
   },
 });
