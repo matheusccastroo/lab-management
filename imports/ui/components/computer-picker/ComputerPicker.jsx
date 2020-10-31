@@ -2,16 +2,16 @@ import React from "react";
 import { Col, Row } from "antd";
 import withTemplate from "../../template/WithTemplate";
 import { useSubscription } from "../../helpers/useSubscription";
-import { ComputersCollection } from "../../../api/db/computers-collection";
 import { chunk } from "lodash";
 import { ComputerCard } from "./ComputerCard";
+import { Computer } from "../../../api/models/computer";
 
 const AllComputerPicker = () => {
   const { dataFetched } = useSubscription(
     "computers.fetchAll",
-    ComputersCollection,
+    Computer,
     undefined,
-    { _id: 1, active: 1, currentPerson: 1 }
+    { _id: 1, currentPersonId: 1 }
   );
   const chunkSize = 5;
   const computers = chunk(dataFetched, chunkSize);
@@ -21,12 +21,8 @@ const AllComputerPicker = () => {
       <Row justify="space-around" align="middle">
         {computers.map((currentValue) => (
           <Col span={12} className="buttonsContainer">
-            {currentValue.map(({ _id, active, currentPerson }) => (
-              <ComputerCard
-                _id={_id}
-                active={active}
-                currentPerson={currentPerson}
-              />
+            {currentValue.map(({ _id, currentPersonId }) => (
+              <ComputerCard _id={_id} currentPerson={currentPersonId} />
             ))}
           </Col>
         ))}

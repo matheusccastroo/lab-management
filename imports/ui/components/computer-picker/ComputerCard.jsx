@@ -4,7 +4,7 @@ import { Button } from "antd";
 import { ComputerDisplay } from "./ComputerDisplay";
 import { findPairComputerPerson } from "../../../api/methods/computer/findPairComputerPerson";
 
-export const ComputerCard = ({ _id, active, currentPerson }) => {
+export const ComputerCard = ({ _id, currentPersonId }) => {
   const [showModal, setShowModal] = useState(false);
   const [lastComputerId, setLastComputerId] = useState(null);
   const [computer, setComputer] = useState(null);
@@ -34,18 +34,19 @@ export const ComputerCard = ({ _id, active, currentPerson }) => {
     );
   };
 
+  const isActive = computer?.isActive();
+
   return (
     <>
       <Button
-        danger={active}
+        danger={isActive}
         type="primary"
         icon={<DesktopOutlined />}
-        onClick={() => handleComputerCardOnClick(_id, undefined)}
+        onClick={() => handleComputerCardOnClick(_id, currentPersonId)}
         size="large"
       />
       <ComputerDisplay
         computer={computer}
-        active={active}
         person={person}
         isLoading={isLoading}
         setShowModal={setShowModal}
