@@ -1,5 +1,4 @@
 import React from "react";
-import { PersonsCollection } from "../../api/db/persons-collection";
 import withTemplate from "../template/WithTemplate";
 import { GenericTable } from "./generic/GenericTable";
 import { Button, Space } from "antd";
@@ -7,7 +6,6 @@ import { Link } from "@reach/router";
 import moment from "moment";
 import { useSubscription } from "../helpers/useSubscription";
 import { Person } from "../../api/models/person";
-import { computerDelete } from "../../api/methods/computer/computerDelete";
 import { personDelete } from "../../api/methods/person/personDelete";
 
 const columns = [
@@ -17,9 +15,10 @@ const columns = [
     render: (person) => person.getFullName(),
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "Date of Birth",
+    dataIndex: "dateOfBirth",
+    key: "dateOfBirth",
+    render: (value) => moment(value).format("DD/MM/YYYY"),
   },
   {
     title: "Address",
