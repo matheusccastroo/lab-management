@@ -35,8 +35,15 @@ const NewComputerForm = () => {
   useEffect(() => form.resetFields(), [initialValues]);
 
   const onFinish = (values) => {
-    const computer = fromDocumentToObject(values, Computer);
-    computerUpsert.call(computer);
+    if (!_id) {
+      const computer = fromDocumentToObject(values, Computer);
+      computerUpsert.call({ computer });
+    } else {
+      computerUpsert.call({ computerId: _id, values }, (err) =>
+        console.log(err)
+      );
+    }
+
     navigate("/computers", { replace: true });
   };
 

@@ -3,10 +3,20 @@ import { Person } from "../../models/person";
 
 export const personUpsert = new ValidatedMethod({
   name: "personUpsert",
-  validate(postObject) {
-    check(postObject, Person);
+  validate({ person, personId }) {
+    if (person) check(person, Person);
+    if (personId) check(personId, String);
   },
-  run(postObject) {
-    postObject.save();
+  run({ person, personId, values }) {
+    const postObject = person || Person.findOne(personId);
+    if (personId) {
+      Object.assign(postObject, values);
+    }
+
+    try {
+      postObject.save();
+    } catch (e) {
+      console.log("==== ERROR UPDATING PERSON =====");
+    }
   },
 });

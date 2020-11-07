@@ -43,9 +43,11 @@ const NewPersonForm = () => {
     if (!_id) {
       const person = fromDocumentToObject(values, Person);
       person.dateOfBirth = person.dateOfBirth?.toDate();
-      personUpsert.call(person);
+      personUpsert.call({ person });
     } else {
-    } // TODO -> FIX EDIT PERSON AND COMUPTER
+      values.dateOfBirth = values.dateOfBirth?.toDate();
+      personUpsert.call({ personId: _id, values });
+    }
 
     navigate("/persons", { replace: true });
   };

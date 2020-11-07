@@ -3,10 +3,19 @@ import { Computer } from "../../models/computer";
 
 export const computerUpsert = new ValidatedMethod({
   name: "computerUpsert",
-  validate(postObject) {
-    check(postObject, Computer);
+  validate({ computer, computerId }) {
+    if (computer) check(computer, Computer);
+    if (computerId) check(computerId, String);
   },
-  run(postObject) {
-    postObject.save();
+  run({ computer, computerId, values }) {
+    const postObject = computer || Computer.findOne(computerId);
+    if (computerId) {
+      Object.assign(postObject, values);
+    }
+    try {
+      postObject.save();
+    } catch (e) {
+      console.log("==== ERROR UPDATING COMPUTER =====");
+    }
   },
 });

@@ -33,10 +33,10 @@ const columns = [
   },
   {
     title: "Actions",
-    render: ({ _id }) => (
+    render: (person) => (
       <Space size="middle">
-        <Button>
-          <Link to={`/new-person/${_id}`} className="nav-text">
+        <Button disabled={person.isUsingComputer}>
+          <Link to={`/new-person/${person._id}`} className="nav-text">
             Edit
           </Link>
         </Button>
@@ -44,8 +44,9 @@ const columns = [
           danger
           onClick={() => {
             const shouldDelete = confirm("Are you sure you want to delete?");
-            if (shouldDelete) personDelete.call({ _id });
+            if (shouldDelete) personDelete.call({ _id: person._id });
           }}
+          disabled={person.isUsingComputer}
         >
           Delete
         </Button>
