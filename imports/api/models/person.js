@@ -30,23 +30,15 @@ export const Person = Class.create({
         },
       ],
     },
-    age: {
-      type: Number,
-      validators: [
-        {
-          type: "gt",
-          param: 0,
-          resolveError({ param }) {
-            return "You are too young for that!";
-          },
-        },
-      ],
-    },
     address: {
       type: String,
       optional: true,
     },
     dateOfBirth: Date,
+    isUsingComputer: {
+      type: Boolean,
+      default: false,
+    },
   },
   helpers: {
     getFullName() {

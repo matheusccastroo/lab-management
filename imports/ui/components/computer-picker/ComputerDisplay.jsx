@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { LoadingComponent } from "../LoadingComponent";
-import { Badge, Descriptions, Form, Modal, Select } from "antd";
+import { Badge, Button, Descriptions, Form, Modal, Select } from "antd";
 import { ComputerStatus } from "../../../api/models/enums";
 import { getPersonsIdAndFullName } from "../../../api/methods/person/getPersonsIdAndFullName";
-import { computerUpsert } from "../../../api/methods/computer/computerUpsert";
-
-const { Option } = Select;
+import { bookUnbookComputer } from "../../../api/methods/computer/bookUnbookComputer";
 
 const BookForm = ({ computer, formRef }) => {
   const { location, status: statusNumber, lastBookedAt } = computer;
@@ -36,8 +34,9 @@ const BookForm = ({ computer, formRef }) => {
             >
               <Select
                 showSearch
+                defaultValue={undefined}
                 placeholder="Select a person..."
-                optionFilterProp="children"
+                optionFilterProp="label"
                 onSearch={(name) => {
                   getPersonsIdAndFullName.call({ name }, (err, response) => {
                     if (err) {
@@ -48,12 +47,8 @@ const BookForm = ({ computer, formRef }) => {
                     setPersonsOptions(response);
                   });
                 }}
-              >
-                {personsOptions &&
-                  personsOptions.map(({ value, label }) => (
-                    <Option value={value}>{label}</Option>
-                  ))}
-              </Select>
+                options={personsOptions}
+              />
             </Form.Item>
           </Form>
         </Descriptions.Item>
@@ -93,6 +88,7 @@ export const ComputerDisplay = ({
   person,
 }) => {
   const [form] = Form.useForm();
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   const getContent = () => {
     if (isActive && person) {
@@ -103,40 +99,58 @@ export const ComputerDisplay = ({
 
   const isActive = computer && computer.isActive();
 
+  const handleSubmit = () => {
+    if (!isActive) {
+      setIsButtonLoading(true);
+      form
+        .validateFields()
+        .then(({ currentPersonId }) => {
+          bookUnbookComputer.call(
+            { computerObject: computer, personId: currentPersonId },
+            (err) => {
+              if (err) {
+                console.log(err);
+              }
+            }
+          );
+          setIsButtonLoading(false);
+          setShowModal(false);
+        })
+        .catch((info) => {
+          console.log("Validate Failed:", info);
+        })
+        .then(() => form.resetFields());
+    } else {
+      bookUnbookComputer.call({ computerObject: computer, person }, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+      setShowModal(false);
+    }
+  };
+
+  const handelCancel = () => setShowModal(false);
+
   return (
     <Modal
       title="Information"
       visible={showModal}
-      onOk={() => {
-        if (!isActive) {
-          form
-            .validateFields()
-            .then(({ currentPersonId }) => {
-              computer.setActive(currentPersonId);
-              computer.lastBookedAt = new Date();
-              computerUpsert.call(computer, (err) => {
-                if (err) {
-                  console.log(err);
-                }
-              });
-              setShowModal(false);
-            })
-            .catch((info) => {
-              console.log("Validate Failed:", info);
-            });
-        } else {
-          computer.status = ComputerStatus.IDLE;
-          computer.currentPersonId = null;
-          computerUpsert.call(computer, (err) => {
-            if (err) {
-              console.log(err);
-            }
-          });
-          setShowModal(false);
-        }
-      }}
-      onCancel={() => setShowModal(false)}
-      okText={isActive ? "Unbook" : "Book"}
+      onCancel={handelCancel}
+      footer={[
+        <Button key="back" onClick={handelCancel}>
+          Return
+        </Button>,
+        <Button
+          key="submit"
+          type="primary"
+          loading={isButtonLoading}
+          onClick={handleSubmit}
+          disabled={isActive && !person}
+        >
+          {isActive ? "Unbook" : "Book"}
+        </Button>,
+      ]}
     >
       <div>{isLoading ? <LoadingComponent /> : getContent(person)}</div>
     </Modal>

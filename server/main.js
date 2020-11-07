@@ -21,9 +21,9 @@ Meteor.startup(() => {
       const person = new Person({
         firstName: `ASDDDD${k.toString()}`,
         lastName: "ABECEDARIO",
-        age: k > 0 ? k : 1,
         dateOfBirth: new Date(),
         address: "ladasldasldasldaslkdlaskdlaskldkasldkla",
+        isUsingComputer: false,
       });
       person.save();
     }

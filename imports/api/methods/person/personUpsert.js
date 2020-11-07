@@ -1,20 +1,12 @@
 import { ValidatedMethod } from "meteor/mdg:validated-method";
-import { PersonsCollection } from "../../db/persons-collection";
+import { Person } from "../../models/person";
 
 export const personUpsert = new ValidatedMethod({
   name: "personUpsert",
-  validate({ personId, ...postObject }) {
-    check(postObject, Object);
+  validate(postObject) {
+    check(postObject, Person);
   },
-  run({ personId, ...postObject }) {
-    PersonsCollection.upsert(personId, {
-      $set: {
-        ...postObject,
-        updatedAt: new Date(),
-      },
-      $setOnInsert: {
-        createdAt: new Date(),
-      },
-    });
+  run(postObject) {
+    postObject.save();
   },
 });

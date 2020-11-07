@@ -7,10 +7,13 @@ export const getPersonsIdAndFullName = new ValidatedMethod({
   run({ personId, name }) {
     if (this.isSimulation) return;
 
-    const persons = Person.find({ personId }).fetch();
+    const persons = Person.find({
+      personId,
+      isUsingComputer: false,
+    }).fetch();
 
     const filteredPersons = persons.filter((val) =>
-      val.getFullName().includes(name)
+      val.getFullName().toLowerCase().includes(name.toLowerCase())
     );
 
     return filteredPersons.map((currentVal) => {

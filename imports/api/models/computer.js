@@ -69,7 +69,10 @@ export const Computer = Class.create({
     setActive(personId) {
       this.status = ComputerStatus.RUNNING;
       this.currentPersonId = personId;
-      return;
+    },
+    setIdle() {
+      this.status = ComputerStatus.IDLE;
+      this.currentPersonId = undefined;
     },
     getCurrentPerson() {
       return Person.findOne(this.currentPersonId);

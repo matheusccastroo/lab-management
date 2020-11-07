@@ -7,6 +7,9 @@ import { navigate, useParams } from "@reach/router";
 import withTemplate from "../template/WithTemplate";
 import moment from "moment";
 import { Person } from "../../api/models/person";
+import { fromDocumentToObject } from "../../helpers/transformDocToObject";
+import { Computer } from "../../api/models/computer";
+import { computerUpsert } from "../../api/methods/computer/computerUpsert";
 
 const layout = {
   labelCol: { span: 0 },
@@ -37,12 +40,13 @@ const NewPersonForm = () => {
   useEffect(() => form.resetFields(), [initialValues]);
 
   const onFinish = (values) => {
-    const { dateOfBirth } = values;
-    personUpsert.call({
-      ...values,
-      dateOfBirth: dateOfBirth?.toDate(),
-      _id,
-    });
+    if (!_id) {
+      const person = fromDocumentToObject(values, Person);
+      person.dateOfBirth = person.dateOfBirth?.toDate();
+      personUpsert.call(person);
+    } else {
+    } // TODO -> FIX EDIT PERSON AND COMUPTER
+
     navigate("/persons", { replace: true });
   };
 
