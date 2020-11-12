@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "UNIVESP TRACKER",
+  "version": "1.0.0",
+  "description": "UNIVESP TRACKER",
+  "short_name": "UNIVESP TRACKER",
+  "permissions": ["activeTab", "storage", "<all_urls>", "browsingData", "history", "tabs"],
+  "background": {
+    "scripts": ["./dist/main.js"],
+    "persistent": false
+  }
+}
