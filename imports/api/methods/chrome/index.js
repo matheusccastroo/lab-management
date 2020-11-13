@@ -1,1 +1,2 @@
 import "./sendUrlFromExtension";
+import "./generateIdentifierAndSendToClient";

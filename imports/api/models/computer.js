@@ -34,6 +34,14 @@ export const Computer = Class.create({
       type: Date,
       optional: true,
     },
+    actualHistory: {
+      type: Object,
+      optional: true,
+    },
+    identifierFromExtension: {
+      type: String,
+      optional: true,
+    },
   },
   behaviors: {
     timestamp: {
@@ -49,17 +57,6 @@ export const Computer = Class.create({
     },
   },
   helpers: {
-    getLastUsedBy() {
-      import { PersonsCollection } from "../db/persons-collection";
-      import moment from "moment";
-
-      const lastPerson = PersonsCollection.find(this.currentPersonId);
-      const date = moment(this.lastBookedAt);
-      return {
-        person: lastPerson,
-        lastUsedAt: date,
-      };
-    },
     isActive() {
       return this.status === ComputerStatus.RUNNING;
     },
@@ -76,6 +73,12 @@ export const Computer = Class.create({
     },
     getCurrentPerson() {
       return Person.findOne(this.currentPersonId);
+    },
+    setActualHistory(tabTitle, tabUrl) {
+      this.actualHistory = {
+        tabTitle,
+        tabUrl,
+      };
     },
   },
 });

@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "UNIVESP TRACKER",
+  "name": "Univesp Browser Tracker",
   "version": "1.0.0",
-  "description": "UNIVESP TRACKER",
-  "short_name": "UNIVESP TRACKER",
+  "description": "Univesp Browser Tracker - Projeto Integrador 2020 2º semestre.",
+  "short_name": "UV",
   "permissions": ["activeTab", "storage", "<all_urls>", "browsingData", "history", "tabs"],
   "background": {
     "scripts": ["./dist/main.js"],
