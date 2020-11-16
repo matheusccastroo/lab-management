@@ -11,32 +11,22 @@ import { Computer } from "../imports/api/models/computer";
 Meteor.startup(() => {
   if (!Accounts.findUserByUsername("admin")) {
     Accounts.createUser({
-      username: "admin",
-      password: "admin",
+      username: "univesp",
+      password: "admin@univesp",
     });
-  }
-  if (PersonsCollection.find().count() === 0) {
-    import { Person } from "../imports/api/models/person";
-    for (let k = 0; k < 50; k++) {
-      const person = new Person({
-        firstName: `ASDDDD${k.toString()}`,
-        lastName: "ABECEDARIO",
-        dateOfBirth: new Date(),
-        address: "ladasldasldasldaslkdlaskdlaskldkasldkla",
-        isUsingComputer: false,
-      });
-      person.save();
-    }
   }
   if (ComputersCollection.find().count() === 0) {
     import { Computer } from "../imports/api/models/computer";
-    for (let k = 0; k < 50; k++) {
-      const pc = new Computer({
-        location: `A${k.toString()}`,
-        status: ComputerStatus.IDLE,
-        extensionIdentifier: null,
-      });
-      pc.save();
+    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    for (const letter of alphabet) {
+      for (let a = 0; a < 5; a++) {
+        const pc = new Computer({
+          location: `${letter}${a.toString()}`,
+          status: ComputerStatus.IDLE,
+          extensionIdentifier: null,
+        });
+        pc.save();
+      }
     }
   }
 });
