@@ -23,6 +23,7 @@ body {
 
 .layout {
   height: 100vh;
+  overflow: auto;
 }
 
 .buttonsContainer {

@@ -15,6 +15,17 @@ Meteor.startup(() => {
       password: "admin@univesp",
     });
   }
+  if (PersonsCollection.find().count() === 0) {
+    import { Person } from "../imports/api/models/person";
+    for (let b = 0; b < 10; b++) {
+      const person = new Person({
+        firstName: `A${b.toString()}`,
+        lastName: "LALA",
+        dateOfBirth: new Date(),
+      });
+      person.save();
+    }
+  }
   if (ComputersCollection.find().count() === 0) {
     import { Computer } from "../imports/api/models/computer";
     const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
