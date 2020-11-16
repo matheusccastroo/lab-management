@@ -6,7 +6,7 @@
   "short_name": "UV",
   "permissions": ["activeTab", "storage", "<all_urls>", "browsingData", "history", "tabs"],
   "background": {
-    "scripts": ["./dist/main.js"],
+    "scripts": ["meteor.bundle.js", "background.js"],
     "persistent": false
   }
 }

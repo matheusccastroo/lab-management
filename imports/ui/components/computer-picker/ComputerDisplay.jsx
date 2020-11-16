@@ -76,6 +76,9 @@ const ActiveComputerProfile = ({ computer, person }) => {
       <Descriptions.Item label="Person Name">
         {person.getFullName()}
       </Descriptions.Item>
+      <Descriptions.Item label="Actual Web Page">
+        {computer.getActualHistoryFormated()}
+      </Descriptions.Item>
     </Descriptions>
   );
 };

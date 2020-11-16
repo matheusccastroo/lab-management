@@ -38,7 +38,7 @@ export const Computer = Class.create({
       type: Object,
       optional: true,
     },
-    identifierFromExtension: {
+    extensionIdentifier: {
       type: String,
       optional: true,
     },
@@ -79,6 +79,10 @@ export const Computer = Class.create({
         tabTitle,
         tabUrl,
       };
+    },
+    getActualHistoryFormated() {
+      if (!this.actualHistory) return "N/A";
+      return `${this.actualHistory.tabTitle}: ${this.actualHistory.tabUrl}`;
     },
   },
 });

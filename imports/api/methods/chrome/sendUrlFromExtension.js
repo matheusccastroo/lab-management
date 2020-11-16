@@ -1,26 +1,26 @@
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 import { Computer } from "../../models/computer";
+import { ComputerStatus } from "../../models/enums";
 
 export const sendUrlFromExtension = new ValidatedMethod({
   name: "sendUrlFromExtension",
-  validate({ url, title, computerIdentifier }) {
+  validate({ url, title, secret }) {
     check(url, String);
     check(title, String);
-    check(computerIdentifier, String);
+    check(secret, String);
   },
-  run({ url, title, computerIdentifier }) {
-    console.log("Chegou request pra insert do historico");
-    console.log(computerIdentifier);
-    console.log(title);
-    console.log(url);
-
-    const computer = Computer.find({ extensionIdentifier: computerIdentifier });
+  run({ url, title, secret }) {
+    const computer = Computer.findOne({
+      extensionIdentifier: secret,
+      status: ComputerStatus.RUNNING,
+    });
     if (!computer) return;
 
-    computer.actualHistory = {
-      title,
-      url,
-    };
+    computer.setActualHistory(title, url);
+
+    console.log(
+      `Setting actualHistory for computer with location: ${computer.location}`
+    );
 
     computer.save();
   },

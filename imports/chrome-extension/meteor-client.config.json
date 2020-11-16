@@ -1,0 +1,14 @@
+{
+  "source": "/home/matheus/WebstormProjects/lab-management",
+  "runtime": {
+    "DDP_DEFAULT_CONNECTION_URL": "http://localhost:3000"
+  },
+  "externalNpmPackages": [
+    "@babel/runtime",
+    "core-js",
+    "meteor-node-stubs",
+    "react"
+  ],
+  "generateNodeModules": true,
+  "npmInstall": false
+}

@@ -34,6 +34,7 @@ Meteor.startup(() => {
       const pc = new Computer({
         location: `A${k.toString()}`,
         status: ComputerStatus.IDLE,
+        extensionIdentifier: null,
       });
       pc.save();
     }
