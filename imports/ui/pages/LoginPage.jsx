@@ -32,13 +32,13 @@ export const LoginPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Username!",
+                message: "Usuário é um campo obrigatório!",
               },
             ]}
           >
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Username"
+              placeholder="Usuário"
             />
           </Form.Item>
           <Form.Item
@@ -46,14 +46,14 @@ export const LoginPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Password!",
+                message: "Senha é um campo obrigatório!",
               },
             ]}
           >
             <Input
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="Password"
+              placeholder="Senha"
             />
           </Form.Item>
 
@@ -63,7 +63,7 @@ export const LoginPage = () => {
               htmlType="submit"
               className="login-form-button"
             >
-              Log in
+              Entrar
             </Button>
           </Form.Item>
         </Form>

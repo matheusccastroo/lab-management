@@ -1,7 +1,7 @@
 {
   "source": "/home/matheus/WebstormProjects/lab-management",
   "runtime": {
-    "DDP_DEFAULT_CONNECTION_URL": "http://localhost:3000"
+    "DDP_DEFAULT_CONNECTION_URL": "https://lab-management-univesp.herokuapp.com/"
   },
   "externalNpmPackages": [
     "@babel/runtime",

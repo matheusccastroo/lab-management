@@ -11,7 +11,7 @@ const divSpinStyle = {
   display: "flex",
 };
 
-export const LoadingComponent = ({ tip = "Loading...", ...props }) => {
+export const LoadingComponent = ({ tip = "Carregando...", ...props }) => {
   return (
     <div style={divSpinStyle}>
       <Spin tip={tip} {...props} />

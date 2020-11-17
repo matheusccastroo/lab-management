@@ -70,5 +70,5 @@ const AllComputerPicker = () => {
 export const ComputerPicker = withTemplate({
   withHeader: true,
   title: "Home",
-  subTitle: "You can book computers here.",
+  subTitle: "Você pode locar os computadores aqui.",
 })(AllComputerPicker);

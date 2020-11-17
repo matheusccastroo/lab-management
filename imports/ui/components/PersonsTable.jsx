@@ -10,45 +10,47 @@ import { personDelete } from "../../api/methods/person/personDelete";
 
 const columns = [
   {
-    title: "Name",
+    title: "Nome",
     key: "name",
     render: (person) => person.getFullName(),
   },
   {
-    title: "Date of Birth",
+    title: "Data de Nascimento",
     dataIndex: "dateOfBirth",
     key: "dateOfBirth",
     render: (value) => moment(value).format("DD/MM/YYYY"),
   },
   {
-    title: "Address",
+    title: "Endereço",
     dataIndex: "address",
     key: "address",
   },
   {
-    title: "Created at",
+    title: "Criado em",
     dataIndex: "createdAt",
     key: "createdAt",
     render: (value) => moment(value).format("DD/MM/YYYY - HH:mm"),
   },
   {
-    title: "Actions",
+    title: "Ações",
     render: (person) => (
       <Space size="middle">
         <Button disabled={person.isUsingComputer}>
           <Link to={`/new-person/${person._id}`} className="nav-text">
-            Edit
+            Editar
           </Link>
         </Button>
         <Button
           danger
           onClick={() => {
-            const shouldDelete = confirm("Are you sure you want to delete?");
+            const shouldDelete = confirm(
+              "Você tem certeza que deseja deletar?"
+            );
             if (shouldDelete) personDelete.call({ _id: person._id });
           }}
           disabled={person.isUsingComputer}
         >
-          Delete
+          Excluir
         </Button>
       </Space>
     ),
@@ -63,11 +65,11 @@ const PersonsTable = () => {
 
 export const AllPersonsView = withTemplate({
   withHeader: true,
-  title: "Persons",
-  subTitle: "All person can be found here.",
+  title: "Pessoas",
+  subTitle: "Todas as pessoas aparecem aqui.",
   extra: [
     <Button key="3" type="primary">
-      <Link to={`/new-person`}>+ Person</Link>
+      <Link to={`/new-person`}>+ Pessoa</Link>
     </Button>,
   ],
 })(PersonsTable);

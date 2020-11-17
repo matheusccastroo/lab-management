@@ -12,8 +12,8 @@ const BookForm = ({ computer, formRef }) => {
   return (
     <>
       <Descriptions bordered size="small" column={1}>
-        <Descriptions.Item label="Location">{location}</Descriptions.Item>
-        <Descriptions.Item label="Status">
+        <Descriptions.Item label="Localização">{location}</Descriptions.Item>
+        <Descriptions.Item label="Estado">
           {" "}
           <Badge
             status="success"
@@ -21,21 +21,23 @@ const BookForm = ({ computer, formRef }) => {
           />
         </Descriptions.Item>
         {lastBookedAt && (
-          <Descriptions.Item label="Booked at">
+          <Descriptions.Item label="Ultima locação em">
             {lastBookedAt.toString()}
           </Descriptions.Item>
         )}
-        <Descriptions.Item label="Person">
+        <Descriptions.Item label="Pessoa">
           <Form form={formRef} name="bookComputerForm">
             <Form.Item
               name="currentPersonId"
               style={{ marginBottom: "0px" }}
-              rules={[{ required: true, message: "Please select a person!" }]}
+              rules={[
+                { required: true, message: "Por favor, selecione uma pessoa!" },
+              ]}
             >
               <Select
                 showSearch
                 defaultValue={undefined}
-                placeholder="Select a person..."
+                placeholder="Selecione uma pessoa..."
                 optionFilterProp="label"
                 onSearch={(name) => {
                   getPersonsIdAndFullName.call({ name }, (err, response) => {
@@ -62,21 +64,21 @@ const ActiveComputerProfile = ({ computer, person }) => {
 
   return (
     <Descriptions bordered size="small" column={1}>
-      <Descriptions.Item label="Location">{location}</Descriptions.Item>
-      <Descriptions.Item label="Status">
+      <Descriptions.Item label="Localização">{location}</Descriptions.Item>
+      <Descriptions.Item label="Estado">
         {" "}
         <Badge
           status="processing"
           text={ComputerStatus.getIdentifier(statusNumber)}
         />
       </Descriptions.Item>
-      <Descriptions.Item label="Booked at">
+      <Descriptions.Item label="Locado em">
         {lastBookedAt?.toString()}
       </Descriptions.Item>
-      <Descriptions.Item label="Person Name">
+      <Descriptions.Item label="Nome da Pessoa">
         {person.getFullName()}
       </Descriptions.Item>
-      <Descriptions.Item label="Actual Web Page">
+      <Descriptions.Item label="Página atual">
         {computer.getActualHistoryFormated()}
       </Descriptions.Item>
     </Descriptions>
@@ -137,7 +139,7 @@ export const ComputerDisplay = ({
 
   return (
     <Modal
-      title="Information"
+      title="Informações"
       visible={showModal}
       onCancel={handelCancel}
       footer={[
@@ -151,7 +153,7 @@ export const ComputerDisplay = ({
           onClick={handleSubmit}
           disabled={isActive && !person}
         >
-          {isActive ? "Unbook" : "Book"}
+          {isActive ? "Liberar" : "Locar"}
         </Button>,
       ]}
     >

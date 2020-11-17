@@ -56,15 +56,17 @@ const NewComputerForm = () => {
       onFinish={onFinish}
     >
       <Form.Item
-        label="Location"
+        label="Localização"
         name="location"
-        rules={[{ required: true, message: "Title is required!" }]}
+        rules={[
+          { required: true, message: "Localização é um campo obrigatório!" },
+        ]}
       >
         <Input />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Submit
+          Enviar
         </Button>
       </Form.Item>
     </Form>

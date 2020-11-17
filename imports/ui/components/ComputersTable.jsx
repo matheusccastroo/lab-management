@@ -10,45 +10,47 @@ import { computerDelete } from "../../api/methods/computer/computerDelete";
 
 const columns = [
   {
-    title: "Location",
+    title: "Localização",
     dataIndex: "location",
     key: "location",
   },
   {
-    title: "Status",
+    title: "Estado",
     key: "status",
     render: (computer) => computer.getStatusDecoded(),
   },
   {
-    title: "Updated at",
+    title: "Atualizado em",
     dataIndex: "updatedAt",
     key: "updatedAt",
     render: (value) => moment(value).format("DD/MM/YYYY - HH:mm"),
   },
   {
-    title: "Created at",
+    title: "Criado em",
     dataIndex: "createdAt",
     key: "createdAt",
     render: (value) => moment(value).format("DD/MM/YYYY - HH:mm"),
   },
   {
-    title: "Actions",
+    title: "Ações",
     render: (computer) => (
       <Space size="middle">
         <Button disabled={computer.isActive()}>
           <Link to={`/new-computer/${computer._id}`} className="nav-text">
-            Edit
+            Editar
           </Link>
         </Button>
         <Button
           danger
           onClick={() => {
-            const shouldDelete = confirm("Are you sure you want to delete?");
+            const shouldDelete = confirm(
+              "Você tem certeza que deseja deletar?"
+            );
             if (shouldDelete) computerDelete.call({ _id: computer._id });
           }}
           disabled={computer.isActive()}
         >
-          Delete
+          Excluir
         </Button>
       </Space>
     ),
@@ -63,11 +65,11 @@ const ComputersTable = () => {
 
 export const AllComputersView = withTemplate({
   withHeader: true,
-  title: "Computers",
-  subTitle: "All computers can be found here.",
+  title: "Computadores",
+  subTitle: "Todos os computadores aparecem aqui.",
   extra: [
     <Button key="3" type="primary">
-      <Link to={`/new-computer`}>+ Computer</Link>
+      <Link to={`/new-computer`}>+ Computador</Link>
     </Button>,
   ],
 })(ComputersTable);

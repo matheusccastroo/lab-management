@@ -61,28 +61,28 @@ const NewPersonForm = () => {
       onFinish={onFinish}
     >
       <Form.Item
-        label="First Name"
+        label="Nome"
         name="firstName"
         rules={[{ required: true, message: "Title is required!" }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label="Last Name"
+        label="Sobrenome"
         name="lastName"
         rules={[{ required: true, message: "Title is required!" }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label="Date of Birth"
+        label="Data de Nascimento"
         name="dateOfBirth"
         rules={[{ required: true, message: "Date of birth is required!" }]}
       >
         <DatePicker />
       </Form.Item>
       <Form.Item
-        label="Address"
+        label="Endereço"
         name="address"
         rules={[{ required: true, message: "Address is required!" }]}
       >
@@ -90,7 +90,7 @@ const NewPersonForm = () => {
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Submit
+          Enviar
         </Button>
       </Form.Item>
     </Form>

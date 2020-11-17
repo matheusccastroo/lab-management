@@ -19,10 +19,10 @@ const withTemplate = (props) => (WrappedComponent) => {
                 <Link to={`/`}>Home</Link>
               </Menu.Item>
               <Menu.Item>
-                <Link to={`/persons`}>Persons</Link>
+                <Link to={`/persons`}>Pessoas</Link>
               </Menu.Item>
               <Menu.Item>
-                <Link to={`/computers`}>Computers</Link>
+                <Link to={`/computers`}>Computadores</Link>
               </Menu.Item>
               <Button
                 icon={<LogoutOutlined />}
