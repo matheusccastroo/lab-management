@@ -9,7 +9,7 @@ import { ComputerStatus } from "../imports/api/models/enums";
 import { Computer } from "../imports/api/models/computer";
 
 Meteor.startup(() => {
-  if (!Accounts.findUserByUsername("admin")) {
+  if (!Accounts.findUserByUsername("univesp")) {
     Accounts.createUser({
       username: "univesp",
       password: "admin@univesp",

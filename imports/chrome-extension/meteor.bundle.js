@@ -1,6 +1,6 @@
 __meteor_runtime_config__ = Object.assign({
   "meteorEnv": {},
-  "DDP_DEFAULT_CONNECTION_URL": "http://localhost:3000"
+  "DDP_DEFAULT_CONNECTION_URL": "https://lab-management-univesp.herokuapp.com/"
 }, window.__meteor_runtime_config__);
 
 //////////////////////////////////////////////////////////////////////////
@@ -1837,11 +1837,11 @@ __meteor_runtime_config__ = Object.assign({
 
   var _require2 = meteorInstall({ "node_modules": { "meteor": { "modules": { "client.js": function _module(_require, _exports) {
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //                                                                                                       //
-            // packages/modules/client.js                                                                            //
-            //                                                                                                       //
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
+            //                                                                                  //
+            // packages/modules/client.js                                                       //
+            //                                                                                  //
+            //////////////////////////////////////////////////////////////////////////////////////
             //
             _require("./install-packages.js");
             _require("./stubs.js");
@@ -1850,14 +1850,14 @@ __meteor_runtime_config__ = Object.assign({
 
             _exports.addStyles = _require("./css").addStyles;
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
           }, "css.js": function _module2(_require3, _exports3) {
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //                                                                                                       //
-            // packages/modules/css.js                                                                               //
-            //                                                                                                       //
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
+            //                                                                                  //
+            // packages/modules/css.js                                                          //
+            //                                                                                  //
+            //////////////////////////////////////////////////////////////////////////////////////
             //
             var doc = document;
             var head = doc.getElementsByTagName("head").item(0);
@@ -1880,14 +1880,14 @@ __meteor_runtime_config__ = Object.assign({
               return head.appendChild(style);
             };
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
           }, "install-packages.js": function module(_require4, _exports4, _module3) {
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //                                                                                                       //
-            // packages/modules/install-packages.js                                                                  //
-            //                                                                                                       //
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
+            //                                                                                  //
+            // packages/modules/install-packages.js                                             //
+            //                                                                                  //
+            //////////////////////////////////////////////////////////////////////////////////////
             //
             function install(name, mainModule) {
               var meteorDir = {};
@@ -1955,14 +1955,14 @@ __meteor_runtime_config__ = Object.assign({
             install("hot-code-push");
             install("autoupdate", "meteor/autoupdate/autoupdate_client.js");
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
           }, "process.js": function module(_require5, _exports5, _module5) {
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //                                                                                                       //
-            // packages/modules/process.js                                                                           //
-            //                                                                                                       //
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
+            //                                                                                  //
+            // packages/modules/process.js                                                      //
+            //                                                                                  //
+            //////////////////////////////////////////////////////////////////////////////////////
             //
             if (!global.process) {
               try {
@@ -2001,25 +2001,25 @@ __meteor_runtime_config__ = Object.assign({
               }
             }
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
           }, "reify.js": function module(_require6, _exports6, _module7) {
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //                                                                                                       //
-            // packages/modules/reify.js                                                                             //
-            //                                                                                                       //
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
+            //                                                                                  //
+            // packages/modules/reify.js                                                        //
+            //                                                                                  //
+            //////////////////////////////////////////////////////////////////////////////////////
             //
             _require6("reify/lib/runtime").enable(_module7.constructor.prototype);
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
           }, "stubs.js": function _module8(_require7) {
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //                                                                                                       //
-            // packages/modules/stubs.js                                                                             //
-            //                                                                                                       //
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
+            //                                                                                  //
+            // packages/modules/stubs.js                                                        //
+            //                                                                                  //
+            //////////////////////////////////////////////////////////////////////////////////////
             //
             var haveStubs = false;
             try {
@@ -2031,10 +2031,10 @@ __meteor_runtime_config__ = Object.assign({
               // When meteor-node-stubs is installed in the application's root
               // node_modules directory, requiring it here installs aliases for stubs
               // for all Node built-in modules, such as fs, util, and http.
-              _require7("meteor-node-stubs");
+              require("meteor-node-stubs");
             }
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
           }, "node_modules": { "reify": { "lib": { "runtime": { "index.js": function module(_require8, _exports7, _module9) {
 
                     // This module should be compatible with PhantomJS v1, just like the other files
@@ -2192,7 +2192,7 @@ __meteor_runtime_config__ = Object.assign({
                       return this.exportAs(includeDefault ? "*+" : "*");
                     }
 
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////////////////////////////////////////
                   }, "utils.js": function module(_require9, _exports9, _module10) {
 
                     // This module should be compatible with PhantomJS v1, just like the other files
@@ -2315,7 +2315,7 @@ __meteor_runtime_config__ = Object.assign({
 
                     _exports9.setPrototypeOf = setPrototypeOf;
 
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////////////////////////////////////////
                   }, "entry.js": function module(_require10, _exports10, _module11) {
 
                     // This module should be compatible with PhantomJS v1, just like the other files
@@ -2709,604 +2709,8 @@ __meteor_runtime_config__ = Object.assign({
 
                     _module11.exports = Entry;
 
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                  } } } } } } }, "meteor-node-stubs": { "package.json": function module(_require11, _exports12, _module13) {
-
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //                                                                                                       //
-          // node_modules/meteor-node-stubs/package.json                                                           //
-          //                                                                                                       //
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //
-          _module13.exports = {
-            "name": "meteor-node-stubs",
-            "version": "1.0.1",
-            "main": "index.js"
-          };
-
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        }, "index.js": function module(_require12, _exports13, _module14) {
-
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //                                                                                                       //
-          // node_modules/meteor-node-stubs/index.js                                                               //
-          //                                                                                                       //
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //
-          var map = _require12("./map.json");
-          var meteorAliases = {};
-
-          Object.keys(map).forEach(function (id) {
-            if (typeof map[id] === "string") {
-              var aliasParts = _module14.id.split("/");
-              aliasParts.pop();
-              aliasParts.push("node_modules", map[id]);
-              _exports13[id] = meteorAliases[id + ".js"] = aliasParts.join("/");
-            } else {
-              _exports13[id] = map[id];
-              meteorAliases[id + ".js"] = function () {};
-            }
-          });
-
-          if (typeof meteorInstall === "function") {
-            meteorInstall({
-              // Install the aliases into a node_modules directory one level up from
-              // the root directory, so that they do not clutter the namespace
-              // available to apps and packages.
-              "..": {
-                node_modules: meteorAliases
-              }
-            });
-          }
-
-          // If Buffer is not defined globally, but the "buffer" built-in stub is
-          // installed and can be imported, use it to define global.Buffer so that
-          // modules like core-util-is/lib/util.js can refer to Buffer without
-          // crashing application startup.
-          if (typeof global.Buffer !== "function") {
-            try {
-              // Use (0, require)(...) to avoid registering a dependency on the
-              // "buffer" stub, in case it is not otherwise bundled.
-              global.Buffer = (0, _require12)("buffer").Buffer;
-            } catch (ok) {
-              // Failure to import "buffer" is fine as long as the Buffer global
-              // variable is not used.
-            }
-          }
-
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        }, "map.json": function module(_require13, _exports14, _module15) {
-
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //                                                                                                       //
-          // node_modules/meteor-node-stubs/map.json                                                               //
-          //                                                                                                       //
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-          //
-          _module15.exports = {
-            "assert": "assert/",
-            "buffer": "buffer/",
-            "child_process": null,
-            "cluster": null,
-            "console": "console-browserify",
-            "constants": "constants-browserify",
-            "crypto": "../wrappers/crypto.js",
-            "dgram": null,
-            "dns": null,
-            "domain": "domain-browser",
-            "events": "events/",
-            "fs": null,
-            "http": "stream-http",
-            "https": "https-browserify",
-            "module": "../wrappers/module.js",
-            "net": null,
-            "os": "os-browserify/browser.js",
-            "path": "path-browserify",
-            "process": "process/browser.js",
-            "punycode": "punycode/",
-            "querystring": "querystring-es3/",
-            "readline": null,
-            "repl": null,
-            "stream": "stream-browserify",
-            "_stream_duplex": "readable-stream/lib/_stream_duplex.js",
-            "_stream_passthrough": "readable-stream/lib/_stream_passthrough.js",
-            "_stream_readable": "readable-stream/lib/_stream_readable.js",
-            "_stream_transform": "readable-stream/lib/_stream_transform.js",
-            "_stream_writable": "readable-stream/lib/_stream_writable.js",
-            "string_decoder": "string_decoder/",
-            "sys": "util/util.js",
-            "timers": "timers-browserify",
-            "tls": null,
-            "tty": "tty-browserify",
-            "url": "url/",
-            "util": "util/util.js",
-            "vm": "vm-browserify",
-            "zlib": "browserify-zlib"
-          };
-
-          ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        }, "deps": { "process.js": function _module16(_require14) {
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //                                                                                                       //
-            // node_modules/meteor-node-stubs/deps/process.js                                                        //
-            //                                                                                                       //
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //
-            _require14("process/browser.js");
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-          } }, "node_modules": { "process": { "browser.js": function module(_require15, _exports15, _module17) {
-
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //                                                                                                       //
-              // node_modules/meteor-node-stubs/node_modules/process/browser.js                                        //
-              //                                                                                                       //
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //
-              // shim for using process in browser
-              var process = _module17.exports = {};
-
-              // cached from whatever global is present so that test runners that stub it
-              // don't break things.  But we need to wrap it in a try catch in case it is
-              // wrapped in strict mode code which doesn't define any globals.  It's inside a
-              // function because try/catches deoptimize in certain engines.
-
-              var cachedSetTimeout;
-              var cachedClearTimeout;
-
-              function defaultSetTimout() {
-                throw new Error('setTimeout has not been defined');
-              }
-              function defaultClearTimeout() {
-                throw new Error('clearTimeout has not been defined');
-              }
-              (function () {
-                try {
-                  if (typeof setTimeout === 'function') {
-                    cachedSetTimeout = setTimeout;
-                  } else {
-                    cachedSetTimeout = defaultSetTimout;
-                  }
-                } catch (e) {
-                  cachedSetTimeout = defaultSetTimout;
-                }
-                try {
-                  if (typeof clearTimeout === 'function') {
-                    cachedClearTimeout = clearTimeout;
-                  } else {
-                    cachedClearTimeout = defaultClearTimeout;
-                  }
-                } catch (e) {
-                  cachedClearTimeout = defaultClearTimeout;
-                }
-              })();
-              function runTimeout(fun) {
-                if (cachedSetTimeout === setTimeout) {
-                  //normal enviroments in sane situations
-                  return setTimeout(fun, 0);
-                }
-                // if setTimeout wasn't available but was latter defined
-                if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-                  cachedSetTimeout = setTimeout;
-                  return setTimeout(fun, 0);
-                }
-                try {
-                  // when when somebody has screwed with setTimeout but no I.E. maddness
-                  return cachedSetTimeout(fun, 0);
-                } catch (e) {
-                  try {
-                    // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-                    return cachedSetTimeout.call(null, fun, 0);
-                  } catch (e) {
-                    // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-                    return cachedSetTimeout.call(this, fun, 0);
-                  }
-                }
-              }
-              function runClearTimeout(marker) {
-                if (cachedClearTimeout === clearTimeout) {
-                  //normal enviroments in sane situations
-                  return clearTimeout(marker);
-                }
-                // if clearTimeout wasn't available but was latter defined
-                if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-                  cachedClearTimeout = clearTimeout;
-                  return clearTimeout(marker);
-                }
-                try {
-                  // when when somebody has screwed with setTimeout but no I.E. maddness
-                  return cachedClearTimeout(marker);
-                } catch (e) {
-                  try {
-                    // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-                    return cachedClearTimeout.call(null, marker);
-                  } catch (e) {
-                    // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-                    // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-                    return cachedClearTimeout.call(this, marker);
-                  }
-                }
-              }
-              var queue = [];
-              var draining = false;
-              var currentQueue;
-              var queueIndex = -1;
-
-              function cleanUpNextTick() {
-                if (!draining || !currentQueue) {
-                  return;
-                }
-                draining = false;
-                if (currentQueue.length) {
-                  queue = currentQueue.concat(queue);
-                } else {
-                  queueIndex = -1;
-                }
-                if (queue.length) {
-                  drainQueue();
-                }
-              }
-
-              function drainQueue() {
-                if (draining) {
-                  return;
-                }
-                var timeout = runTimeout(cleanUpNextTick);
-                draining = true;
-
-                var len = queue.length;
-                while (len) {
-                  currentQueue = queue;
-                  queue = [];
-                  while (++queueIndex < len) {
-                    if (currentQueue) {
-                      currentQueue[queueIndex].run();
-                    }
-                  }
-                  queueIndex = -1;
-                  len = queue.length;
-                }
-                currentQueue = null;
-                draining = false;
-                runClearTimeout(timeout);
-              }
-
-              process.nextTick = function (fun) {
-                var args = new Array(arguments.length - 1);
-                if (arguments.length > 1) {
-                  for (var i = 1; i < arguments.length; i++) {
-                    args[i - 1] = arguments[i];
-                  }
-                }
-                queue.push(new Item(fun, args));
-                if (queue.length === 1 && !draining) {
-                  runTimeout(drainQueue);
-                }
-              };
-
-              // v8 likes predictible objects
-              function Item(fun, array) {
-                this.fun = fun;
-                this.array = array;
-              }
-              Item.prototype.run = function () {
-                this.fun.apply(null, this.array);
-              };
-              process.title = 'browser';
-              process.browser = true;
-              process.env = {};
-              process.argv = [];
-              process.version = ''; // empty string to avoid regexp issues
-              process.versions = {};
-
-              function noop() {}
-
-              process.on = noop;
-              process.addListener = noop;
-              process.once = noop;
-              process.off = noop;
-              process.removeListener = noop;
-              process.removeAllListeners = noop;
-              process.emit = noop;
-              process.prependListener = noop;
-              process.prependOnceListener = noop;
-
-              process.listeners = function (name) {
-                return [];
-              };
-
-              process.binding = function (name) {
-                throw new Error('process.binding is not supported');
-              };
-
-              process.cwd = function () {
-                return '/';
-              };
-              process.chdir = function (dir) {
-                throw new Error('process.chdir is not supported');
-              };
-              process.umask = function () {
-                return 0;
-              };
-
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            } } } }, "@babel": { "runtime": { "package.json": function module(_require16, _exports16, _module18) {
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //                                                                                                       //
-            // node_modules/@babel/runtime/package.json                                                              //
-            //                                                                                                       //
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //
-            _module18.exports = {
-              "author": {
-                "name": "Sebastian McKenzie",
-                "email": "sebmck@gmail.com"
-              },
-              "bugs": {
-                "url": "https://github.com/babel/babel/issues"
-              },
-              "bundleDependencies": false,
-              "dependencies": {
-                "regenerator-runtime": "^0.13.4"
-              },
-              "deprecated": false,
-              "description": "babel's modular runtime helpers",
-              "exports": {
-                "./helpers/": "./helpers/",
-                "./helpers/typeof": "./helpers/typeof.js",
-                "./helpers/jsx": "./helpers/jsx.js",
-                "./helpers/asyncIterator": "./helpers/asyncIterator.js",
-                "./helpers/AwaitValue": "./helpers/AwaitValue.js",
-                "./helpers/AsyncGenerator": "./helpers/AsyncGenerator.js",
-                "./helpers/wrapAsyncGenerator": "./helpers/wrapAsyncGenerator.js",
-                "./helpers/awaitAsyncGenerator": "./helpers/awaitAsyncGenerator.js",
-                "./helpers/asyncGeneratorDelegate": "./helpers/asyncGeneratorDelegate.js",
-                "./helpers/asyncToGenerator": "./helpers/asyncToGenerator.js",
-                "./helpers/classCallCheck": "./helpers/classCallCheck.js",
-                "./helpers/createClass": "./helpers/createClass.js",
-                "./helpers/defineEnumerableProperties": "./helpers/defineEnumerableProperties.js",
-                "./helpers/defaults": "./helpers/defaults.js",
-                "./helpers/defineProperty": "./helpers/defineProperty.js",
-                "./helpers/extends": "./helpers/extends.js",
-                "./helpers/objectSpread": "./helpers/objectSpread.js",
-                "./helpers/objectSpread2": "./helpers/objectSpread2.js",
-                "./helpers/inherits": "./helpers/inherits.js",
-                "./helpers/inheritsLoose": "./helpers/inheritsLoose.js",
-                "./helpers/getPrototypeOf": "./helpers/getPrototypeOf.js",
-                "./helpers/setPrototypeOf": "./helpers/setPrototypeOf.js",
-                "./helpers/isNativeReflectConstruct": "./helpers/isNativeReflectConstruct.js",
-                "./helpers/construct": "./helpers/construct.js",
-                "./helpers/isNativeFunction": "./helpers/isNativeFunction.js",
-                "./helpers/wrapNativeSuper": "./helpers/wrapNativeSuper.js",
-                "./helpers/instanceof": "./helpers/instanceof.js",
-                "./helpers/interopRequireDefault": "./helpers/interopRequireDefault.js",
-                "./helpers/interopRequireWildcard": "./helpers/interopRequireWildcard.js",
-                "./helpers/newArrowCheck": "./helpers/newArrowCheck.js",
-                "./helpers/objectDestructuringEmpty": "./helpers/objectDestructuringEmpty.js",
-                "./helpers/objectWithoutPropertiesLoose": "./helpers/objectWithoutPropertiesLoose.js",
-                "./helpers/objectWithoutProperties": "./helpers/objectWithoutProperties.js",
-                "./helpers/assertThisInitialized": "./helpers/assertThisInitialized.js",
-                "./helpers/possibleConstructorReturn": "./helpers/possibleConstructorReturn.js",
-                "./helpers/createSuper": "./helpers/createSuper.js",
-                "./helpers/superPropBase": "./helpers/superPropBase.js",
-                "./helpers/get": "./helpers/get.js",
-                "./helpers/set": "./helpers/set.js",
-                "./helpers/taggedTemplateLiteral": "./helpers/taggedTemplateLiteral.js",
-                "./helpers/taggedTemplateLiteralLoose": "./helpers/taggedTemplateLiteralLoose.js",
-                "./helpers/readOnlyError": "./helpers/readOnlyError.js",
-                "./helpers/classNameTDZError": "./helpers/classNameTDZError.js",
-                "./helpers/temporalUndefined": "./helpers/temporalUndefined.js",
-                "./helpers/tdz": "./helpers/tdz.js",
-                "./helpers/temporalRef": "./helpers/temporalRef.js",
-                "./helpers/slicedToArray": "./helpers/slicedToArray.js",
-                "./helpers/slicedToArrayLoose": "./helpers/slicedToArrayLoose.js",
-                "./helpers/toArray": "./helpers/toArray.js",
-                "./helpers/toConsumableArray": "./helpers/toConsumableArray.js",
-                "./helpers/arrayWithoutHoles": "./helpers/arrayWithoutHoles.js",
-                "./helpers/arrayWithHoles": "./helpers/arrayWithHoles.js",
-                "./helpers/maybeArrayLike": "./helpers/maybeArrayLike.js",
-                "./helpers/iterableToArray": "./helpers/iterableToArray.js",
-                "./helpers/iterableToArrayLimit": "./helpers/iterableToArrayLimit.js",
-                "./helpers/iterableToArrayLimitLoose": "./helpers/iterableToArrayLimitLoose.js",
-                "./helpers/unsupportedIterableToArray": "./helpers/unsupportedIterableToArray.js",
-                "./helpers/arrayLikeToArray": "./helpers/arrayLikeToArray.js",
-                "./helpers/nonIterableSpread": "./helpers/nonIterableSpread.js",
-                "./helpers/nonIterableRest": "./helpers/nonIterableRest.js",
-                "./helpers/createForOfIteratorHelper": "./helpers/createForOfIteratorHelper.js",
-                "./helpers/createForOfIteratorHelperLoose": "./helpers/createForOfIteratorHelperLoose.js",
-                "./helpers/skipFirstGeneratorNext": "./helpers/skipFirstGeneratorNext.js",
-                "./helpers/toPrimitive": "./helpers/toPrimitive.js",
-                "./helpers/toPropertyKey": "./helpers/toPropertyKey.js",
-                "./helpers/initializerWarningHelper": "./helpers/initializerWarningHelper.js",
-                "./helpers/initializerDefineProperty": "./helpers/initializerDefineProperty.js",
-                "./helpers/applyDecoratedDescriptor": "./helpers/applyDecoratedDescriptor.js",
-                "./helpers/classPrivateFieldLooseKey": "./helpers/classPrivateFieldLooseKey.js",
-                "./helpers/classPrivateFieldLooseBase": "./helpers/classPrivateFieldLooseBase.js",
-                "./helpers/classPrivateFieldGet": "./helpers/classPrivateFieldGet.js",
-                "./helpers/classPrivateFieldSet": "./helpers/classPrivateFieldSet.js",
-                "./helpers/classPrivateFieldDestructureSet": "./helpers/classPrivateFieldDestructureSet.js",
-                "./helpers/classStaticPrivateFieldSpecGet": "./helpers/classStaticPrivateFieldSpecGet.js",
-                "./helpers/classStaticPrivateFieldSpecSet": "./helpers/classStaticPrivateFieldSpecSet.js",
-                "./helpers/classStaticPrivateMethodGet": "./helpers/classStaticPrivateMethodGet.js",
-                "./helpers/classStaticPrivateMethodSet": "./helpers/classStaticPrivateMethodSet.js",
-                "./helpers/decorate": "./helpers/decorate.js",
-                "./helpers/classPrivateMethodGet": "./helpers/classPrivateMethodGet.js",
-                "./helpers/classPrivateMethodSet": "./helpers/classPrivateMethodSet.js",
-                "./helpers/wrapRegExp": "./helpers/wrapRegExp.js",
-                "./helpers/esm/typeof": "./helpers/esm/typeof.js",
-                "./helpers/esm/jsx": "./helpers/esm/jsx.js",
-                "./helpers/esm/asyncIterator": "./helpers/esm/asyncIterator.js",
-                "./helpers/esm/AwaitValue": "./helpers/esm/AwaitValue.js",
-                "./helpers/esm/AsyncGenerator": "./helpers/esm/AsyncGenerator.js",
-                "./helpers/esm/wrapAsyncGenerator": "./helpers/esm/wrapAsyncGenerator.js",
-                "./helpers/esm/awaitAsyncGenerator": "./helpers/esm/awaitAsyncGenerator.js",
-                "./helpers/esm/asyncGeneratorDelegate": "./helpers/esm/asyncGeneratorDelegate.js",
-                "./helpers/esm/asyncToGenerator": "./helpers/esm/asyncToGenerator.js",
-                "./helpers/esm/classCallCheck": "./helpers/esm/classCallCheck.js",
-                "./helpers/esm/createClass": "./helpers/esm/createClass.js",
-                "./helpers/esm/defineEnumerableProperties": "./helpers/esm/defineEnumerableProperties.js",
-                "./helpers/esm/defaults": "./helpers/esm/defaults.js",
-                "./helpers/esm/defineProperty": "./helpers/esm/defineProperty.js",
-                "./helpers/esm/extends": "./helpers/esm/extends.js",
-                "./helpers/esm/objectSpread": "./helpers/esm/objectSpread.js",
-                "./helpers/esm/objectSpread2": "./helpers/esm/objectSpread2.js",
-                "./helpers/esm/inherits": "./helpers/esm/inherits.js",
-                "./helpers/esm/inheritsLoose": "./helpers/esm/inheritsLoose.js",
-                "./helpers/esm/getPrototypeOf": "./helpers/esm/getPrototypeOf.js",
-                "./helpers/esm/setPrototypeOf": "./helpers/esm/setPrototypeOf.js",
-                "./helpers/esm/isNativeReflectConstruct": "./helpers/esm/isNativeReflectConstruct.js",
-                "./helpers/esm/construct": "./helpers/esm/construct.js",
-                "./helpers/esm/isNativeFunction": "./helpers/esm/isNativeFunction.js",
-                "./helpers/esm/wrapNativeSuper": "./helpers/esm/wrapNativeSuper.js",
-                "./helpers/esm/instanceof": "./helpers/esm/instanceof.js",
-                "./helpers/esm/interopRequireDefault": "./helpers/esm/interopRequireDefault.js",
-                "./helpers/esm/interopRequireWildcard": "./helpers/esm/interopRequireWildcard.js",
-                "./helpers/esm/newArrowCheck": "./helpers/esm/newArrowCheck.js",
-                "./helpers/esm/objectDestructuringEmpty": "./helpers/esm/objectDestructuringEmpty.js",
-                "./helpers/esm/objectWithoutPropertiesLoose": "./helpers/esm/objectWithoutPropertiesLoose.js",
-                "./helpers/esm/objectWithoutProperties": "./helpers/esm/objectWithoutProperties.js",
-                "./helpers/esm/assertThisInitialized": "./helpers/esm/assertThisInitialized.js",
-                "./helpers/esm/possibleConstructorReturn": "./helpers/esm/possibleConstructorReturn.js",
-                "./helpers/esm/createSuper": "./helpers/esm/createSuper.js",
-                "./helpers/esm/superPropBase": "./helpers/esm/superPropBase.js",
-                "./helpers/esm/get": "./helpers/esm/get.js",
-                "./helpers/esm/set": "./helpers/esm/set.js",
-                "./helpers/esm/taggedTemplateLiteral": "./helpers/esm/taggedTemplateLiteral.js",
-                "./helpers/esm/taggedTemplateLiteralLoose": "./helpers/esm/taggedTemplateLiteralLoose.js",
-                "./helpers/esm/readOnlyError": "./helpers/esm/readOnlyError.js",
-                "./helpers/esm/classNameTDZError": "./helpers/esm/classNameTDZError.js",
-                "./helpers/esm/temporalUndefined": "./helpers/esm/temporalUndefined.js",
-                "./helpers/esm/tdz": "./helpers/esm/tdz.js",
-                "./helpers/esm/temporalRef": "./helpers/esm/temporalRef.js",
-                "./helpers/esm/slicedToArray": "./helpers/esm/slicedToArray.js",
-                "./helpers/esm/slicedToArrayLoose": "./helpers/esm/slicedToArrayLoose.js",
-                "./helpers/esm/toArray": "./helpers/esm/toArray.js",
-                "./helpers/esm/toConsumableArray": "./helpers/esm/toConsumableArray.js",
-                "./helpers/esm/arrayWithoutHoles": "./helpers/esm/arrayWithoutHoles.js",
-                "./helpers/esm/arrayWithHoles": "./helpers/esm/arrayWithHoles.js",
-                "./helpers/esm/maybeArrayLike": "./helpers/esm/maybeArrayLike.js",
-                "./helpers/esm/iterableToArray": "./helpers/esm/iterableToArray.js",
-                "./helpers/esm/iterableToArrayLimit": "./helpers/esm/iterableToArrayLimit.js",
-                "./helpers/esm/iterableToArrayLimitLoose": "./helpers/esm/iterableToArrayLimitLoose.js",
-                "./helpers/esm/unsupportedIterableToArray": "./helpers/esm/unsupportedIterableToArray.js",
-                "./helpers/esm/arrayLikeToArray": "./helpers/esm/arrayLikeToArray.js",
-                "./helpers/esm/nonIterableSpread": "./helpers/esm/nonIterableSpread.js",
-                "./helpers/esm/nonIterableRest": "./helpers/esm/nonIterableRest.js",
-                "./helpers/esm/createForOfIteratorHelper": "./helpers/esm/createForOfIteratorHelper.js",
-                "./helpers/esm/createForOfIteratorHelperLoose": "./helpers/esm/createForOfIteratorHelperLoose.js",
-                "./helpers/esm/skipFirstGeneratorNext": "./helpers/esm/skipFirstGeneratorNext.js",
-                "./helpers/esm/toPrimitive": "./helpers/esm/toPrimitive.js",
-                "./helpers/esm/toPropertyKey": "./helpers/esm/toPropertyKey.js",
-                "./helpers/esm/initializerWarningHelper": "./helpers/esm/initializerWarningHelper.js",
-                "./helpers/esm/initializerDefineProperty": "./helpers/esm/initializerDefineProperty.js",
-                "./helpers/esm/applyDecoratedDescriptor": "./helpers/esm/applyDecoratedDescriptor.js",
-                "./helpers/esm/classPrivateFieldLooseKey": "./helpers/esm/classPrivateFieldLooseKey.js",
-                "./helpers/esm/classPrivateFieldLooseBase": "./helpers/esm/classPrivateFieldLooseBase.js",
-                "./helpers/esm/classPrivateFieldGet": "./helpers/esm/classPrivateFieldGet.js",
-                "./helpers/esm/classPrivateFieldSet": "./helpers/esm/classPrivateFieldSet.js",
-                "./helpers/esm/classPrivateFieldDestructureSet": "./helpers/esm/classPrivateFieldDestructureSet.js",
-                "./helpers/esm/classStaticPrivateFieldSpecGet": "./helpers/esm/classStaticPrivateFieldSpecGet.js",
-                "./helpers/esm/classStaticPrivateFieldSpecSet": "./helpers/esm/classStaticPrivateFieldSpecSet.js",
-                "./helpers/esm/classStaticPrivateMethodGet": "./helpers/esm/classStaticPrivateMethodGet.js",
-                "./helpers/esm/classStaticPrivateMethodSet": "./helpers/esm/classStaticPrivateMethodSet.js",
-                "./helpers/esm/decorate": "./helpers/esm/decorate.js",
-                "./helpers/esm/classPrivateMethodGet": "./helpers/esm/classPrivateMethodGet.js",
-                "./helpers/esm/classPrivateMethodSet": "./helpers/esm/classPrivateMethodSet.js",
-                "./helpers/esm/wrapRegExp": "./helpers/esm/wrapRegExp.js",
-                "./package": "./package.json",
-                "./package.json": "./package.json",
-                "./regenerator": "./regenerator/index.js",
-                "./regenerator/": "./regenerator/"
-              },
-              "homepage": "https://babeljs.io/",
-              "license": "MIT",
-              "name": "@babel/runtime",
-              "publishConfig": {
-                "access": "public"
-              },
-              "repository": {
-                "type": "git",
-                "url": "git+https://github.com/babel/babel.git",
-                "directory": "packages/babel-runtime"
-              },
-              "version": "7.12.5"
-            };
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-          }, "helpers": { "objectSpread2.js": function module(_require17, _exports17, _module19) {
-
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //                                                                                                       //
-              // node_modules/@babel/runtime/helpers/objectSpread2.js                                                  //
-              //                                                                                                       //
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //
-              var defineProperty = _require17("./defineProperty");
-
-              function ownKeys(object, enumerableOnly) {
-                var keys = Object.keys(object);
-
-                if (Object.getOwnPropertySymbols) {
-                  var symbols = Object.getOwnPropertySymbols(object);
-                  if (enumerableOnly) symbols = symbols.filter(function (sym) {
-                    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-                  });
-                  keys.push.apply(keys, symbols);
-                }
-
-                return keys;
-              }
-
-              function _objectSpread2(target) {
-                for (var i = 1; i < arguments.length; i++) {
-                  var source = arguments[i] != null ? arguments[i] : {};
-
-                  if (i % 2) {
-                    ownKeys(Object(source), true).forEach(function (key) {
-                      defineProperty(target, key, source[key]);
-                    });
-                  } else if (Object.getOwnPropertyDescriptors) {
-                    Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-                  } else {
-                    ownKeys(Object(source)).forEach(function (key) {
-                      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-                    });
-                  }
-                }
-
-                return target;
-              }
-
-              _module19.exports = _objectSpread2;
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            }, "defineProperty.js": function module(_require18, _exports18, _module20) {
-
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //                                                                                                       //
-              // node_modules/@babel/runtime/helpers/defineProperty.js                                                 //
-              //                                                                                                       //
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-              //
-              function _defineProperty(obj, key, value) {
-                if (key in obj) {
-                  Object.defineProperty(obj, key, {
-                    value: value,
-                    enumerable: true,
-                    configurable: true,
-                    writable: true
-                  });
-                } else {
-                  obj[key] = value;
-                }
-
-                return obj;
-              }
-
-              _module20.exports = _defineProperty;
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-            } } } } } }, {
+                    //////////////////////////////////////////////////////////////////////////////////////
+                  } } } } } } } } }, {
     "extensions": [".js", ".json"]
   });
 
@@ -3399,7 +2803,7 @@ __meteor_runtime_config__ = Object.assign({
             /////////////////////////////////////////////////////////////////////////////////////
             //
             try {
-              var babelRuntimeVersion = _require("@babel/runtime/package.json").version;
+              var babelRuntimeVersion = require("@babel/runtime/package.json").version;
             } catch (e) {
               throw new Error(["", "The @babel/runtime npm package could not be found in your node_modules ", "directory. Please run the following command to install it:", "", "  meteor npm install --save @babel/runtime", ""].join("\n"));
             }
@@ -4179,23 +3583,23 @@ __meteor_runtime_config__ = Object.assign({
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //
             try {
-              _require("core-js/modules/es.object.get-own-property-descriptors");
+              require("core-js/modules/es.object.get-own-property-descriptors");
             } catch (e) {
               throw new Error(["The core-js npm package could not be found in your node_modules ", "directory. Please run the following command to install it:", "", "  meteor npm install --save core-js", ""].join("\n"));
             }
 
-            _require("core-js/modules/es.object.is");
-            _require("core-js/modules/es.function.name");
-            _require("core-js/modules/es.number.is-finite");
-            _require("core-js/modules/es.number.is-nan");
-            _require("core-js/modules/es.array.flat");
-            _require("core-js/modules/es.array.flat-map");
-            _require("core-js/modules/es.object.from-entries");
-            _require("core-js/modules/es.string.pad-start");
-            _require("core-js/modules/es.string.pad-end");
-            _require("core-js/modules/es.string.trim-start");
-            _require("core-js/modules/es.string.trim-end");
-            _require("core-js/modules/es.symbol.async-iterator");
+            require("core-js/modules/es.object.is");
+            require("core-js/modules/es.function.name");
+            require("core-js/modules/es.number.is-finite");
+            require("core-js/modules/es.number.is-nan");
+            require("core-js/modules/es.array.flat");
+            require("core-js/modules/es.array.flat-map");
+            require("core-js/modules/es.object.from-entries");
+            require("core-js/modules/es.string.pad-start");
+            require("core-js/modules/es.string.pad-end");
+            require("core-js/modules/es.string.trim-start");
+            require("core-js/modules/es.string.trim-end");
+            require("core-js/modules/es.symbol.async-iterator");
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           }, "node_modules": { "core-js": { "modules": { "es.object.get-own-property-descriptors.js": function _module2(_require3) {

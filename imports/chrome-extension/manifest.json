@@ -8,5 +8,8 @@
   "background": {
     "scripts": ["meteor.bundle.js", "background.js"],
     "persistent": false
+  },
+  "icons": {
+    "128": "./logo_univesp.png"
   }
 }
